@@ -11,7 +11,7 @@ Special thanks to all the makers of these libraries!!!
 Here are the libraries we used:
 - [Tiny MCE](http://www.tinymce.com/)
 - [bootstrap](http://getbootstrap.com/)
-- [password_compat](https://github.com/ircmaxell/password_compat) (for the bcrypt encryption)
+- [password_compat](https://github.com/ircmaxell/password_compat)
 
 ###Usage Agreement
 If you use this engine you agree to the license (look at the license.md for more information)
