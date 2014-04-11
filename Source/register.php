@@ -16,7 +16,7 @@
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/register.css" rel="stylesheet">
+    <link href="Themes/Default/css/register.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -30,10 +30,14 @@
 
 <div class="container">
 
-      <form action="register_parse.php" method="post" class="form-signin" role="form">
+    <form action="register_parse.php" method="post" class="form-signin" role="form">
         <h2 class="form-signin-heading">Register</h2>
-        <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+        <input type="username" name="username" class="form-control" placeholder="Username" required autofocus>
         <input type="email" name="email" class="form-control" placeholder="email" required>
 		<input type="password" name="password" class="form-control" placeholder="Password" required>
-		<button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Register</button>
+		<center><img id="captcha" src="http://localhost/Creative%20Forums/securimage/securimage_show.php" /><br />
+		<input type="text" class="form-control" name="captcha_code" size="10" maxlength="6" style="width:50%;" />
+		<a href="#" onclick="document.getElementById('captcha').src = 'http://localhost/Creative%20Forums/securimage/securimage_show.php?' + Math.random(); return false">[ Different Image ]</a></center>
+		<br /><button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Register</button>
+	</form>
 </div>

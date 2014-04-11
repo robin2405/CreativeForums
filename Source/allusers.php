@@ -18,7 +18,6 @@ echo "<div class='table-responsive'>
                 </tr>
               </thead>
 			  <tbody>";
-$uid = $_SESSION['uid'];
 		// Query the posts table for all posts in the specified topic
 		$sql2 = "SELECT * FROM users LIMIT $start_from, 20";
 		// Execute the SELECT query
