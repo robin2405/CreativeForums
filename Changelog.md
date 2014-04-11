@@ -16,6 +16,6 @@
 -Removed Social icons (weren't visible anyway - where behind the top navbar)
 -Fixed favicon not loading issue
 -Lots of other tweaks to theme and scripts
-somwhere in 2013
+Somewhere in 2013
 ==============
 Started this project
