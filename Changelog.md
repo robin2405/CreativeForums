@@ -1,13 +1,13 @@
-10/04/2014:
-==============
+###11/04/2014
+-Uploaded everything to Github
+-Fixed a few bits of the theme system (still not optimised)
+###10/04/2014:
 -Changing all md5 encryptions to bcrypt
 -Some tweaks fot theme system
 -Fixed the bug with the cookies
-09/04/2014:
-==============
+###09/04/2014:
 -Making the theme system
-08/04/2014:
-==============
+###08/04/2014:
 -Admin panel made
 -Profile settings page made
 -Fixed almost all errors related to the global 'sidebar.php' file (deleted the file because it wasn't used....after a little update to the system :D)
@@ -16,6 +16,5 @@
 -Removed Social icons (weren't visible anyway - where behind the top navbar)
 -Fixed favicon not loading issue
 -Lots of other tweaks to theme and scripts
-Somewhere in 2013
-==============
+###Somewhere in 2013
 Started this project
