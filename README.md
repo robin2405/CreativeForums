@@ -12,6 +12,7 @@ Here are the libraries we used:
 - [Tiny MCE](http://www.tinymce.com/)
 - [bootstrap](http://getbootstrap.com/)
 - [password_compat](https://github.com/ircmaxell/password_compat)
+- [Secureimage](http://www.phpcaptcha.org/)
 
 ###Usage Agreement
 If you use this engine you agree to the license (look at the license.md for more information)
