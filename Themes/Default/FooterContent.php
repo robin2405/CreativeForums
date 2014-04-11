@@ -1,1 +1,0 @@
-<p class="text-muted">&copy; 2012-2014 Creative Forums. &middot; <a href="http://www.jasperd.net78.net/index.php">J-Designs</a> &middot; <a href="#">Terms & Privacy</a> &middot; <a href="http://getbootstrap.com/">Bootstrap</a></p>
