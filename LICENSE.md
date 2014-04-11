@@ -1,5 +1,4 @@
-================
-Creative Forums
+License
 ==============
 
 This engine is provided 'as-is', without any express or
