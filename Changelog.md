@@ -3,11 +3,9 @@
 -Changing all md5 encryptions to bcrypt
 -Some tweaks fot theme system
 -Fixed the bug with the cookies
-
 09/04/2014:
 ==============
 -Making the theme system
-
 08/04/2014:
 ==============
 -Admin panel made
@@ -18,3 +16,6 @@
 -Removed Social icons (weren't visible anyway - where behind the top navbar)
 -Fixed favicon not loading issue
 -Lots of other tweaks to theme and scripts
+somwhere in 2013
+==============
+Started this project
