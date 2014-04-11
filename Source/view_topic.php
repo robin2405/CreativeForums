@@ -42,7 +42,7 @@ if (mysql_num_rows($res) == 1) {
 <thead>
               ";
 	// Check to see if the person accessing this page is logged in
-	if ($_SESSION['uid']) { echo "<tr><th>".$row['topic_title']."<a href='edittopictitle.php?tid=".$tid."&cid=".$cid."'><img src='img/modify.gif' style='height:20px;width:20px;'/></a></th><th><input type='submit' class='btn btn-sm btn-primary' value='Reply to this topic' onClick=\"window.location = 'post_reply.php?cid=".$cid."&tid=".$tid."'\" /></th></thead>
+	if ($_SESSION['uid']) { echo "<tr><th>".$row['topic_title']."<a href='edittopictitle.php?tid=".$tid."&cid=".$cid."'><img src='".$Root."Themes/".$getTheme."/img/modify.gif' style='height:20px;width:20px;'/></a></th><th><input type='submit' class='btn btn-sm btn-primary' value='Reply to this topic' onClick=\"window.location = 'post_reply.php?cid=".$cid."&tid=".$tid."'\" /></th></thead>
 			  <tbody>"; } else { echo "<tr><th>".$row['topic_title']."</th><th><p>Log in to reply.</p></th></tr></thead>
 			  <tbody>"; }
 	// Fetch all the topic data from the database
