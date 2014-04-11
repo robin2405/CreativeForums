@@ -28,7 +28,7 @@ echo "<div class='table-responsive'>
                   <th>Messages</th>
 				  <th></th>
 				  <th></th>
-				  <th><button type='button' class='btn btn-sm btn-primary'  onClick=\"window.location = 'newmessage.php'\">Compose Message</button></th>
+				  <th><div align='right'><button type='button' class='btn btn-sm btn-primary'  onClick=\"window.location = 'newmessage.php'\">Compose Message</button></div></th>
                 </tr>
               </thead>
 			  <tbody>";

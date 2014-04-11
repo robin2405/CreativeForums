@@ -121,7 +121,7 @@
 	}
 	
 	$getTheme = getTheme();
-	$Root = dirname(__FILE__);
+	$Root = getRoot();
 	
 	include_once(dirname(__FILE__)."/Themes/".$getTheme."/header.php");
 ?>
