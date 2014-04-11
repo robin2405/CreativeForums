@@ -5,6 +5,14 @@ CreativeForums
 Creative Forums is a forum and portal engine designed to make making a forum simple and nice. With a beatifull default theme and simple to edit codes. You can create a forum in no-time.
 [Temporary official topic](http://www.eclipseorigins.com/community/index.php?/topic/133172-creative-forums-forum-and-portal-engine/)
 
+###Libraries
+Special thanks to all the makers of these libraries!!!
+
+Here are the libraries we used:
+- [Tiny MCE](http://www.tinymce.com/)
+- [bootstrap](http://getbootstrap.com/)
+- [password_compat](https://github.com/ircmaxell/password_compat) (for the bcrypt encryption)
+
 ###Usage Agreement
 If you use this engine you agree to the license (look at the license.md for more information)
 
