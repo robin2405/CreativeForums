@@ -17,3 +17,13 @@ This build is not recommended for usage it's just a build to let you see the cod
 I fully support every version of creativeforums as long as it's the current version if you are using a version from last year or anything then i won't support it.
 
 ###Features
+-Admin and user panel
+-Bcrypt encrypted passwords (very safe)
+-Tiny MCE text editor
+-bootstrap pre-installed
+-PM system(not optimised with user panel yet)
+-Player posts list(not optimised with user panel yet)
+-Themes system(not finished yet)
+-Page system(not finished at all)
+-Creating topics/posts/categories....(all basic forum features)
+-More to come!!!
