@@ -1,6 +1,5 @@
 <?php
 include_once("header.php");
-include_once("sidebar.php");
 include_once("connect.php");
 
 // Check to see if they person accessing this page is logged in and that there is a category id in the url

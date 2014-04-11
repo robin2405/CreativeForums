@@ -14,7 +14,7 @@ if ((!isset($_SESSION['uid']))) {
 }
 
 include_once("header.php");
-include_once("sidebar.php");
+
 
 function getposter($tid) {
 	$sql = "SELECT topic_creator FROM topics WHERE id='".$tid."' LIMIT 1";

@@ -29,7 +29,7 @@ if ($permission!=$admin) {
 
 include_once("header.php");
 
-include_once("sidebar.php");
+
 
 function getdesc($pid) {
 	$sql = "SELECT category_description FROM categories WHERE id='".$pid."' LIMIT 1";

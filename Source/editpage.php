@@ -29,7 +29,7 @@ if ($permission!=$admin) {
 
 include_once("header.php");
 
-include_once("sidebar.php");
+
 
 function getpage($pid) {
 	$sql = "SELECT content FROM pages WHERE id='".$pid."' LIMIT 1";

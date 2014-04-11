@@ -1,7 +1,6 @@
 <?php
 include_once("connect.php");
 include_once("header.php");
-include_once("sidebar.php");
 
 echo '
 Ga naar: <a href="messages.php">Berichten (Inbox)</a> - <a href="pages.php?page=24" target="_blank">Upload een foto</a>

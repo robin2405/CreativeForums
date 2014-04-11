@@ -21,7 +21,7 @@ if ((!isset($_SESSION['uid']))) {
 
 include_once("header.php");
 
-include_once("sidebar.php");
+
 
 function gettitle($tid) {
 	$sql = "SELECT topic_title FROM topics WHERE id='".$tid."' LIMIT 1";

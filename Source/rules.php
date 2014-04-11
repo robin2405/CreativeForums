@@ -1,7 +1,7 @@
 <?php
 session_start(); // Start your sessions to allow your page to interact with session variables
 include_once("header.php");
-include_once("sidebar.php");
+
 include_once("connect.php");
 
 // Function that will convert a user id into their username
