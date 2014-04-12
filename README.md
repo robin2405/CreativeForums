@@ -34,7 +34,7 @@ I fully support every version of creativeforums as long as it's the current vers
 - Bcrypt encrypted passwords (very safe)
 - Tiny MCE text editor
 - bootstrap pre-installed
-- PM system(not optimised with user panel yet)
+- PM system
 - Player posts list(not optimised with user panel yet)
 - Themes system(not finished yet)
 - Page system(not finished at all)
