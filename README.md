@@ -5,6 +5,9 @@ CreativeForums
 Creative Forums is a forum and portal engine designed to make making a forum simple and nice. With a beatifull default theme and simple to edit codes. You can create a forum in no-time.
 [Temporary official topic](http://www.eclipseorigins.com/community/index.php?/topic/133172-creative-forums-forum-and-portal-engine/)
 
+###Donate
+[Paypal Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=3M2GLXPQW9VD6&lc=NL&item_name=Creative%20Forums&currency_code=EUR&bn=PP-DonationsBF%3Abtn_donateCC_LG.gif%3ANonHosted)
+
 ###Libraries
 Special thanks to all the makers of these libraries!!!
 
