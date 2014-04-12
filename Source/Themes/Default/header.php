@@ -80,7 +80,7 @@
 						echo'
 						<li class="dropdown-header">User</li>
 						<li><a href="user.php">Profile</a></li>
-						<li><a href="messages.php">Messages</a></li>
+						<li><a href="user.php?page=6">Messages</a></li>
 						<li><a href="content.php">Your Content</a></li>						
 					</ul>
 				</li>

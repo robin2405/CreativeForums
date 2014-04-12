@@ -19,7 +19,7 @@ Function GetUserID($uid){
 }
 
 if ($uid != GetUserID($uid)){
-        header("Location: messages.php");
+        header("Location: user.php?page=6");
 	exit();
 }
 
@@ -33,5 +33,5 @@ $mid=$_GET['mid'];
   $sql = "DELETE FROM Messages WHERE ID='".$mid."'";
   $res = mysql_query($sql) or die(mysql_error());
   mysqli_close($con);
-  header("Location: messages.php");
+  header("Location: user.php?page=6");
 ?>
