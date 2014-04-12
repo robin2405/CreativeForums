@@ -58,7 +58,7 @@ if (mysql_num_rows($res) == 1) {
             // Check om te zien of iemand ooit al een reply gedaan heeft
             if ($row['topic_last_user'] == "") { $last_user = "N/A"; } else { $last_user = getusername($row['topic_last_user']); }
             // Append the actual topic data to the $topics variable
-            $topics .= "<tr><td><a href='view_topic.php?cid=".$cid."&tid=".$tid."'>".$title." - <span class='post_info'>Gepost op ".convertdate($date)."</span></a>
+            $topics .= "<tr><td><a href='view_topic.php?cid=".$cid."&tid=".$tid."'>".$title." - <span class='post_info'>Posted on ".convertdate($date)."</span></a>
 			<br />
 			".$pid."
 			</td>
