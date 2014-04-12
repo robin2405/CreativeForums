@@ -109,15 +109,12 @@
 					</form>';
 			} else if($PageID=="4"){
 				echo'	<form action="avatar_parse.php" enctype="multipart/form-data" method="post">
-					<tr>
-					<td><p>Avatar (gebruikersfoto)</p></td>
-					<td>
+					<h1 class="page-header">Change Avatar</h1>
 					<div class="choose_file">
-							<span>Choose File</span>
+							<label>Choose File</label>
 							<input id="file" name="file" type="file" />
-						</div>
-					<td><input name="submit" type="submit" value="Verander avatar!" id="button-4" /></p></td>
-					</tr>
+						</div><br />
+					<input class="btn btn-lg btn-primary btn-block" name="submit" type="submit" value="Change Avatar!" id="button-4" />
 					</form>';
 			} else if($PageID=="5"){
 				echo '
