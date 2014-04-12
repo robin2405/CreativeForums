@@ -4,7 +4,6 @@ session_start(); // Start your sessions to allow your page to interact with sess
 require 'connect.php';
 require 'password.php';
 
-// Function that will convert a user id into their email addres
 function gethash($username) {
 	$sql = "SELECT password FROM users WHERE username='".$username."' LIMIT 1";
 	$res = mysql_query($sql) or die(mysql_error());
@@ -12,12 +11,21 @@ function gethash($username) {
 	return $row['password'];
 }
 
+function getsalt($username) {
+	$sql = "SELECT salt FROM users WHERE username='".$username."' LIMIT 1";
+	$res = mysql_query($sql) or die(mysql_error());
+	$row = mysql_fetch_assoc($res);
+	return $row['salt'];
+}
+
 // Check to see if the username textbox has data in it
 if (isset($_POST['username'])) {
 	// Defining local variables from the POST variables
 	$username = $_POST['username'];    
         $password = $_POST['password'];
-		$hash= gethash($username);
+		$salt = getsalt($username);
+		$password = $salt.$password;
+		$hash = gethash($username);
 		if(password_verify($password, $hash)) {
 			// Select data from the users table depending on the entered inputs
 			$sql = "SELECT * FROM users WHERE username='".$username."' LIMIT 1";
@@ -36,6 +44,8 @@ if (isset($_POST['username'])) {
 				echo "Invalid login information.";
 				exit();
 			}
+		} else {
+			echo "Invalid password";
 		}
 }
 
