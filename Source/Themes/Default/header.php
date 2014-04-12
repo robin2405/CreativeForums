@@ -70,7 +70,7 @@
 			} else {
 				echo'
 				<li class="dropdown">
-					<a href="profile.php" class="dropdown-toggle" data-toggle="dropdown">'.getusername($uid).'<b class="caret"></b></a>
+					<a href="user.php" class="dropdown-toggle" data-toggle="dropdown">'.getusername($uid).'<b class="caret"></b></a>
 					<ul class="dropdown-menu">';
 					if ($permission==$admin) {
 						echo'
@@ -79,7 +79,7 @@
 					}
 						echo'
 						<li class="dropdown-header">User</li>
-						<li><a href="editprofile.php">Edit Profile</a></li>
+						<li><a href="user.php">Profile</a></li>
 						<li><a href="messages.php">Messages</a></li>
 						<li><a href="content.php">Your Content</a></li>						
 					</ul>

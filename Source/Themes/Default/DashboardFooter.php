@@ -4,6 +4,7 @@
 			<p class="pull-right"><a href="#">Back to top</a></p>
 			<?php require "FooterContent.php"; ?>
 		</footer>
+		</div>
 		
 	<!-- Bootstrap core JavaScript
     ================================================== -->

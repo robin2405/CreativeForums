@@ -66,7 +66,7 @@ function getRoot() {
 		<link href="'.$Root.'bootstrap/css/bootstrap.css" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
-		<link href="'.$Root.'/Themes/'.$getTheme.'/css/dashboard.css" rel="stylesheet">
+		<link href="'.$Root.'Themes/'.$getTheme.'/css/dashboard.css" rel="stylesheet">
 		';
 		?>
 		

@@ -31,6 +31,6 @@ Function GetUserID($name){
 		// Execute the INSERT query
 		$res = mysql_query($sql) or die(mysql_error());
 		$row = mysql_fetch_assoc($res);
-		header("location: messages.php");
+		header("location: user.php?page=7");
 		mysql_close($con);
 ?>
