@@ -1,3 +1,8 @@
+###13/04/2014
+-Finished up user panel
+###12/04/2014
+-Adding captcha
+-Fixing some theme issues
 ###11/04/2014
 -Uploaded everything to Github
 -Fixed a few bits of the theme system (still not optimised)
