@@ -20,8 +20,8 @@ function getsalt($username) {
 
 // Check to see if the username textbox has data in it
 if (isset($_POST['username'])) {
-	// Defining local variables from the POST variables
-	$username = $_POST['username'];    
+		// Defining local variables from the POST variables
+		$username = $_POST['username'];    
         $password = $_POST['password'];
 		$salt = getsalt($username);
 		$password = $salt.$password;

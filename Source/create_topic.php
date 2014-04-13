@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start your sessions to allow your page to interact with session variables
+include_once("header.php");
 
 // Check to see if they person accessing this page is logged in and that there is a category id in the url
 if ((!isset($_SESSION['uid'])) || ($_GET['cid'] == "")) {
@@ -8,9 +8,11 @@ if ((!isset($_SESSION['uid'])) || ($_GET['cid'] == "")) {
 }
 // Assign local variables found in the url
 $cid = $_GET['cid'];
-$tid = $_GET['tid'];
-
-include_once("header.php");
+if (!isset($_GET['tid'])) {
+	$tid = "";
+} else {
+	$tid = $_GET['tid'];
+}
 		echo "Go back to <a href='view_category.php?cid=".$cid."'>Category</a> - <a href='pages.php?page=24' target='_blank'>Upload a picture</a>";
 		?>
 <form action="create_topic_parse.php" method="post">

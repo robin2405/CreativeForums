@@ -81,7 +81,7 @@
 						<li class="dropdown-header">User</li>
 						<li><a href="user.php">Profile</a></li>
 						<li><a href="user.php?page=6">Messages</a></li>
-						<li><a href="content.php">Your Content</a></li>						
+						<li><a href="user.php?page=10">Your Content</a></li>						
 					</ul>
 				</li>
 				<li class="active"><a href="logout_parse.php">Logout</a></li>

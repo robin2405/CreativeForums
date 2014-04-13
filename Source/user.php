@@ -44,14 +44,9 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-          <a class="navbar-brand" href="editprofile.php">Profile Settings</a>
+          <a class="navbar-brand" href="index.php">Home</a>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="user.php?page=1">Profile Settings</a></li>
-            <li><a href="profile.php">Profile</a></li>
-            <li><a href="index.php">Home</a></li>
-          </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
           </form>
@@ -80,6 +75,10 @@
 			<li><a href="user.php?page=5">New Message</a></li>
 			<li><a href="user.php?page=6">Inbox</a></li>
 			<li><a href="user.php?page=7">Outbox</a></li>
+          </ul>
+		  <ul class="nav nav-sidebar">
+			<li><a href="user.php?page=10">Your Topics</a></li>
+			<li><a href="user.php?page=11">Your Posts</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">';
@@ -212,7 +211,7 @@
 						// Fetch all the post data from the database
 						while ($row2 = mysql_fetch_assoc($res2)) {
 							// Echo out the topic post data from the database
-							echo "<tr><td valign='top'>Send by: ".getusername($row2['Sender'])." - ".convertdate($row2['Date'])." <br /><br /> ".$row2['Content']."</td></tr>";
+							echo "<tr><td valign='top'>Send by: ".getusername($row2['Sender'])."</td><td>".convertdate($row2['Date'])."</td><td>".$row2['Content']."</td></tr>";
 										echo "</tbody>
 							</table>
 							</div>";
@@ -222,36 +221,98 @@
 					header("Location: index.php");
 				}
 			} else if($PageID=="9"){
-			
-			Function GetSubject($mid){
-				$sql = "SELECT Title FROM Messages WHERE ID='".$mid."' LIMIT 1";
-				$res = mysql_query($sql) or die(mysql_error());
-				$row = mysql_fetch_assoc($res);
-				return $row['Title'];
-			}
+				Function GetSubject($mid){
+					$sql = "SELECT Title FROM Messages WHERE ID='".$mid."' LIMIT 1";
+					$res = mysql_query($sql) or die(mysql_error());
+					$row = mysql_fetch_assoc($res);
+					return $row['Title'];
+				}
 
-			Function GetTarget($uid){
-				$sql = "SELECT Sender FROM Messages WHERE ID='".$uid."' LIMIT 1";
-				$res = mysql_query($sql) or die(mysql_error());
-				$row = mysql_fetch_assoc($res);
-				return $row['Sender'];
-			}
+				Function GetTarget($uid){
+					$sql = "SELECT Sender FROM Messages WHERE ID='".$uid."' LIMIT 1";
+					$res = mysql_query($sql) or die(mysql_error());
+					$row = mysql_fetch_assoc($res);
+					return $row['Sender'];
+				}
 
-			$Target=GetTarget($mid);
-			$Target=Getusername($Target);
-			$Onderwerp=GetSubject($mid);
+				$Target=GetTarget($mid);
+				$Target=Getusername($Target);
+				$Onderwerp=GetSubject($mid);
 
-			echo '
-			<form action="newmessage_parse.php" method="post">
-				<input type="text" class="form-control" name="target" placeholder="'.$Target.'">
-				<br />
-				<input type="text" class="form-control" name="title" placeholder="RE: '.$Onderwerp.'">
-				<br />
-				<textarea name="Content">Your Message.</textarea>
-				<input type="submit" class="btn btn-lg btn-primary btn-block" value="Reply" />
-			</form>
-			';
-				
+				echo '
+				<form action="newmessage_parse.php" method="post">
+					<input type="text" class="form-control" name="target" placeholder="'.$Target.'">
+					<br />
+					<input type="text" class="form-control" name="title" placeholder="RE: '.$Onderwerp.'">
+					<br />
+					<textarea name="Content">Your Message.</textarea>
+					<input type="submit" class="btn btn-lg btn-primary btn-block" value="Reply" />
+				</form>
+				';
+			} else if($PageID=="10"){
+				echo "<div class='table-responsive'>
+				<table class='table table-striped'>
+				<thead>
+								<tr>
+								  <th>Topics of ".getusername($uid)."</th>
+								  <th>Date</th>
+								  <th>Title</th>
+								</tr>
+							  </thead>
+							  <tbody>";
+				$uid = $_SESSION['uid'];
+						// Query the topics table for all topics in the specified topic
+						$sql2 = "SELECT * FROM topics WHERE topic_creator='".$uid."' LIMIT $start_from, 5";
+						// Execute the SELECT query
+						$res2 = mysql_query($sql2) or die(mysql_error());
+						// Fetch all the post data from the database
+						while ($row2 = mysql_fetch_assoc($res2)) {
+							// Echo out the topic post data from the database
+							echo "<tr><td valign='top'>".getusername($uid)."</td><td>".convertdate($row2['topic_date'])."</td><td>".$row2['topic_title']."</td></tr>";
+						}
+				echo "</tbody>
+							</table>
+							</div>";
+				$sql = "SELECT * FROM posts WHERE post_creator='".$uid."'"; 
+				$rs_result = mysql_query($sql2) or die(mysql_error());
+				$row = mysql_num_rows($rs_result);
+				$total_pages = ceil($row / 5); 
+				echo "Page ";
+				for ($i=1; $i<=$total_pages; $i++) { 
+							echo "<a href='?page=10&pagenr=".$i."'>".$i."</a> ";
+				}
+			} else if($PageID=="11"){
+				echo "<div class='table-responsive'>
+				<table class='table table-striped'>
+				<thead>
+								<tr>
+								  <th>Posts of ".getusername($uid)."</th>
+								  <th>Date</th>
+								  <th>Content</th>
+								</tr>
+							  </thead>
+							  <tbody>";
+				$uid = $_SESSION['uid'];
+						// Query the posts table for all posts in the specified topic
+						$sql2 = "SELECT * FROM posts WHERE post_creator='".$uid."' LIMIT $start_from, 5";
+						// Execute the SELECT query
+						$res2 = mysql_query($sql2) or die(mysql_error());
+						// Fetch all the post data from the database
+						while ($row2 = mysql_fetch_assoc($res2)) {
+							// Echo out the topic post data from the database
+							echo "<tr><td valign='top'>".getusername($uid)."</td><td>".convertdate($row2['post_date'])."</td><td>".$row2['post_content']."</td></tr>";
+						}
+				echo "</tbody>
+							</table>
+							</div>";
+				$sql = "SELECT * FROM posts WHERE post_creator='".$uid."'"; 
+				$rs_result = mysql_query($sql2) or die(mysql_error());
+				$row = mysql_num_rows($rs_result);
+				$total_pages = ceil($row / 5); 
+				echo "Page ";
+				for ($i=1; $i<=$total_pages; $i++) { 
+							echo "<a href='?page=11&pagenr=".$i."'>".$i."</a> ";
+				}
 			} else {
 				// Function that will convert a user id into their email
 				function getuid($uid) {
