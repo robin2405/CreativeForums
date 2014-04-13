@@ -27,8 +27,23 @@ $hash = getcurpass($uid);
 
 if(password_verify($oldpass, $hash)) {
 	if($newpass == $newpass2) {
+		// Accepts these characters for salt.
+		$Allowed_Chars =
+		'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789./';
+		$Chars_Len = 63;
+
+		$Salt_Length = 15;
+		
+		$salt="";
+		
+		for($i=0; $i<$Salt_Length; $i++)
+		{
+			$salt .= $Allowed_Chars[mt_rand(0,$Chars_Len)];
+		}
+		
+		$newpass = $salt.$newpass;
 		$password = password_hash($newpass, PASSWORD_BCRYPT);
-		$sql = "UPDATE users SET password='".$password."' WHERE id='".$uid."'";
+		$sql = "UPDATE users SET password='".$password."', salt='".$salt."' WHERE id='".$uid."'";
 		$res = mysql_query($sql) or die(mysql_error());
 		mysql_close($con);
 		header("Location: index.php");
