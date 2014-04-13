@@ -93,8 +93,9 @@
     </div>
 	
 <center>
-
-<script language="javascript" type="text/javascript" src="../../tiny_mce/tinymce.min.js"></script>
+<?php
+echo '
+<script language="javascript" type="text/javascript" src="'.$Root.'tiny_mce/tinymce.min.js"></script>
 
 <script type="text/javascript">
 
@@ -118,7 +119,8 @@ tinymce.init({
 
 });
 
-</script>
+</script>';
+?>
 
 <!-- END TINYMCE SCRIPT -->
 </center>
