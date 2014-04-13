@@ -1,6 +1,7 @@
 ###13/04/2014
 - Finished up user panel
 - finished up admin panel
+- Fixed an edit password bug
 
 ###12/04/2014
 - Adding captcha
