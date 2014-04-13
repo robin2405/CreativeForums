@@ -23,5 +23,5 @@ $cid=$_GET['cat'];
   $sql = "DELETE FROM categories WHERE id='".$cid."'";
   $res = mysql_query($sql) or die(mysql_error());
   mysqli_close($con);
-  header("Location: editcat.php");
+  header("Location: admin.php?page=1");
 ?>

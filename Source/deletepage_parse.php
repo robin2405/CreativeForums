@@ -23,5 +23,5 @@ $pid=$_GET['page'];
   $sql = "DELETE FROM pages WHERE id='".$pid."'";
   $res = mysql_query($sql) or die(mysql_error());
   mysqli_close($con);
-  header("Location: editpage2.php");
+  header("Location: admin.php?page=3");
 ?>

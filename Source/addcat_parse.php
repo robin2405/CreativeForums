@@ -29,6 +29,6 @@ if ($permission!=$admin) {
 		// Execute the INSERT query
 		$res = mysql_query($sql) or die(mysql_error());
 		$row = mysql_fetch_assoc($res);
-		header("location: editcat.php");
+		header("location: admin.php?page=1");
 		mysql_close($con);
 ?>

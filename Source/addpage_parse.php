@@ -28,6 +28,6 @@ if ($permission!=$admin) {
 		// Execute the INSERT query
 		$res = mysql_query($sql) or die(mysql_error());
 		$row = mysql_fetch_assoc($res);
-		header("location: editpage2.php");
+		header("location: admin.php?page=3");
 		mysql_close($con);
 ?>

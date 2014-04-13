@@ -46,6 +46,6 @@ $random=rand(2500, 25000);
 $sql = "INSERT INTO gallery (url) VALUES ('".$avatar."')";
 $res = mysql_query($sql) or die(mysql_error());
 $row = mysql_fetch_assoc($res);
-header("location: editpic.php");
+header("location: admin.php?page=2");
 mysql_close($con);
 ?>

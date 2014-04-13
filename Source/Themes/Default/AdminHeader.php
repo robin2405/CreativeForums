@@ -172,9 +172,7 @@ tinymce.init({
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="admin.php">Admin Panel</a></li>
-            <li><a href="editprofile.php">Profile Settings</a></li>
-            <li><a href="profile.php">Profile</a></li>
+            <li><a href="user.php">Profile</a></li>
             <li><a href="index.php">Home</a></li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -191,16 +189,16 @@ tinymce.init({
             <li class="active"><a href="admin.php">Overview</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="AdminPages.php">PageList</a></li>
-            <li><a href="addpage.php">Add Page</a></li>
+            <li><a href="admin.php?page=3">PageList</a></li>
+            <li><a href="admin.php?page=4">Add Page</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="AdminCategories.php">Categories</a></li>
-            <li><a href="">Add Category</a></li>
+            <li><a href="admin.php?page=1">Categories</a></li>
+            <li><a href="admin.php?page=5">Add Category</a></li>
           </ul>
 		  <ul class="nav nav-sidebar">
-            <li><a href="AdminGallery.php">MediaList</a></li>
-            <li><a href="addpic.php">Add Media</a></li>
+            <li><a href="admin.php?page=2">MediaList</a></li>
+            <li><a href="admin.php?page=6">Add Media</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
