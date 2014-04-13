@@ -2,7 +2,13 @@ CreativeForums
 ==============
 
 ###Information
-Creative Forums is a forum and portal engine designed to make making a forum simple and nice. With a beatifull default theme and simple to edit codes. You can create a forum in no-time.
+Creative forums is a professional free open-source forum and portal engine, it is designed to make forums simple fast and easy and also look professional and for professional coders/programmers it is also simple to edit the codes because of the simple structure we use. I also try to make this forum engine the safest and easiest engine around the internet. I also want this engine to become simple to edit with theme editors, selectors, and visualy nice page, category,... editor. This engine will also be easy extendable with the possibility of mods with this feature you will be able to add things to your portal/forum with only a few clicks for example i wanna add a slideshow/carousel i just type in "Carousel" in the searchbox and i find some pretty nice mods i pick one out go to the settings and select the images and DONE.
+
+###Why open-source?
+Because i personally think that open-source simply is the best, some people argue about people are gonna steal my code and they will take all credit well that's the dark side of open-source but you have to take the risk and as long as you have respectfull members they won't take the source code and say it's their own.
+
+Also if you make a project open-source and you get a quit nice community behind it then you also will get support while developing from your users and they'll say why don't you do this instead of that... so it also improves the engine because lots of people can look into the code and check for bugs and improvements, instead of a small team.
+
 [Temporary official topic](http://www.eclipseorigins.com/community/index.php?/topic/133172-creative-forums-forum-and-portal-engine/)
 
 ###Donate
