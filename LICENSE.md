@@ -1,16 +1,10 @@
 License
 ==============
 
-This engine is provided 'as-is', without any express or
-implied warranty. In no event will the authors be held
-liable for any damages arising from the use of this engine.
+####Creative common license (Attribution-ShareAlike)
+#####CC BY-SA
 
-Permission is granted to anyone to use this engine for any purpose,
-including commercial websites, subject to the following restrictions:
+This license lets others remix, tweak, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. This license is often compared to “copyleft” free and open source software licenses. All new works based on yours will carry the same license, so any derivatives will also allow commercial use. This is the license used by Wikipedia, and is recommended for materials that would benefit from incorporating content from Wikipedia and similarly licensed projects.
 
-1. The origin of this engine must not be misrepresented;
-you must not claim that you wrote the original engine.
-If you use this engine, an acknowledgment
-in the website is required. (in footer "Creative forums(V...)"
- 
-2. You are not allowed to redistribute it without edits and credits.
+[View Legal Code](https://creativecommons.org/licenses/by-sa/4.0/legalcode)
+[View License Deed](https://creativecommons.org/licenses/by-sa/4.0/)
