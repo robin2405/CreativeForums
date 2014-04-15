@@ -27,7 +27,7 @@ Here are the libraries we used:
 If you use this engine you agree to the license (look at the license.md for more information)
 
 ###Current Version
-The current version is Alpha V0.0.1
+The current version is Alpha V0.0.2
 
 This build is not recommended for usage it's just a build to let you see the codes because the project is still open-source and you can learn out of these codes(not recommended as well). But most important of all you can find bugs and help us develop this engine to an awesome engine!
 
