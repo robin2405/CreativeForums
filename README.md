@@ -37,7 +37,7 @@ I fully support every version of creativeforums as long as it's the current vers
 ###Features
 - Admin and user panel
 - Random captcha
-- Bcrypt encrypted passwords (very safe)
+- Bcrypt encrypted passwords with random salt (very safe)
 - Tiny MCE text editor
 - bootstrap pre-installed
 - PM system
