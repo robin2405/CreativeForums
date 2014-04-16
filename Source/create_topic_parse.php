@@ -21,32 +21,14 @@ if (isset($_POST['topic_submit'])) {
 		$content = $_POST['topic_content'];
 		$creator = $_SESSION['uid'];
 		
-		// Order of replacement
-		$str     = $content;
-		$order   = array("'");
-		$replace = "\'";
-
-		$newstr = str_replace($order, $replace, $str);
-		
-		$content = $newstr;
-		
-		// Order of replacement
-		$str     = $title;
-		$order   = array("'");
-		$replace = "\'";
-
-		$newstr = str_replace($order, $replace, $str);
-		
-		$title = $newstr;
-		
 		// Insert query to enter the topic information into the database
-		$sql = "INSERT INTO topics (category_id, topic_title, topic_creator, topic_date, topic_reply_date) VALUES ('".$cid."', '".$title."', '".$creator."', now(), now())";
+		$sql = "INSERT INTO topics (category_id, topic_title, topic_creator, topic_date, topic_reply_date) VALUES ('".mysql_real_escape_string($cid)."', '".mysql_real_escape_string($title)."', '".mysql_real_escape_string($creator)."', now(), now())";
 		// Execute the INSERT query
 		$res = mysql_query($sql) or die(mysql_error());
 		// Gather the generated mysql_insert_id from the INSERT query
 		$new_topic_id = mysql_insert_id();
 		// Insert query to enter the post information into the database
-		$sql2 = "INSERT INTO posts (category_id, topic_id, post_creator, post_content, post_date) VALUES ('".$cid."', '".$new_topic_id."', '".$creator."', '".$content."', now())";
+		$sql2 = "INSERT INTO posts (category_id, topic_id, post_creator, post_content, post_date) VALUES ('".mysql_real_escape_string($cid)."', '".mysql_real_escape_string($new_topic_id)."', '".mysql_real_escape_string($creator)."', '".mysql_real_escape_string($content)."', now())";
 		// Execute the INSERT query
 		$res2 = mysql_query($sql2) or die(mysql_error());
 		// Update the forum category associated with this new topic

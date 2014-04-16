@@ -30,14 +30,14 @@ function getcid($tid) {
 	return $row['category_id'];
 }
 
-if(".getposter($pid)." == $_SESSION['uid']){
+if(".getposter(".$tid.")." == $_SESSION['uid']){
 echo '<META HTTP-EQUIV="refresh" CONTENT="5;URL=view_category.php?cid='.getcid($tid).'">';
-echo 'you will be redirected to the category in 5 seconds....<br />You do not wanna wait? <a href="view_category.php?cid='.getcid($tid).'">click here</a>';
+echo 'you will be redirected to the category in 5 seconds....<br />You don\'t wanna wait? <a href="view_category.php?cid='.getcid($tid).'">click here</a>';
 $sql = "DELETE FROM topics WHERE id='".$tid."'";
 $res = mysql_query($sql) or die(mysql_error());
 }elseif($permission==$admin){
 echo '<META HTTP-EQUIV="refresh" CONTENT="5;URL=view_category.php?cid='.getcid($tid).'">';
-echo 'you will be redirected to the category in 5 seconds....<br />You do not wanna wait? <a href="view_category.php?cid='.getcid($tid).'">click here</a>';
+echo 'you will be redirected to the category in 5 seconds....<br />You don\'t wanna wait? <a href="view_category.php?cid='.getcid($tid).'">click here</a>';
 $sql = "DELETE FROM topics WHERE id='".$tid."'";
 $res = mysql_query($sql) or die(mysql_error());
 }else{
@@ -45,7 +45,7 @@ echo '<h1>404</h1>
 	<h3>It’s looking like you may have taken a wrong turn.<br />
 Don’t worry... it happens to the best of us.</h3>';
 echo '<META HTTP-EQUIV="refresh" CONTENT="5;URL=view_category.php?cid='.getcid($tid).'">';
-echo 'you will be redirected to the category in 5 seconds....<br />You do not wanna wait? <a href="view_category.php?cid='.getcid($tid).'">click here</a>';
+echo 'you will be redirected to the category in 5 seconds....<br />You don\'t wanna wait? <a href="view_category.php?cid='.getcid($tid).'">click here</a>';
 }
 
 include_once("footer.php");

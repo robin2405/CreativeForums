@@ -24,20 +24,12 @@ if ($permission!=$admin) {
 
 		$content=$_POST['reply_content'];
 		
-		// Order of replacement
-		$str     = $content;
-		$order   = array("'");
-		$replace = "\'";
-		
-		$newstr = str_replace($order, $replace, $str);
-		
-		$content = $newstr;
-		
 		$pid = $_GET['pid'];
         $cid = $_POST['cid'];
         $tid = $_POST['tid'];
 
-		$sql = "UPDATE posts SET post_content='".$content."' WHERE id='".$pid."'";
+		$sql = "UPDATE posts SET post_content='".mysql_real_escape_string($content)."' WHERE id='".$pid."'";
+		// Insert query to enter the information into the posts table
 		$res = mysql_query($sql) or die(mysql_error());
 		$row = mysql_fetch_assoc($res);
 		header("location: view_topic.php?cid=".$cid."&tid=".$tid."");
