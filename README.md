@@ -39,7 +39,6 @@ I fully support every version of creativeforums as long as it's the current vers
 - Random captcha
 - Bcrypt encrypted passwords with random salt (very safe)
 - Tiny MCE text editor
-- bootstrap pre-installed
 - PM system
 - Player posts/topics list
 - Themes system(not finished yet)
