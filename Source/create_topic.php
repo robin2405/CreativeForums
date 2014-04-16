@@ -19,7 +19,7 @@ if (!isset($_GET['tid'])) {
 <br />
 <input class="form-control" type="text" name="topic_title" placeholder="Topic title" required autofocus />
 <br />
-<textarea name="topic_content" rows="5" cols="75" placeholder="Content" required></textarea>
+<textarea name="topic_content" rows="5" cols="75" placeholder="Content"></textarea>
 <br />
 <input type="hidden" name="cid" value="<?php echo $cid; ?>" />
 <input type="submit" class="btn btn-sm btn-primary" name="topic_submit" value="Make the topic" />

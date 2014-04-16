@@ -53,11 +53,12 @@ if (mysql_num_rows($res) == 1) {
 		$res2 = mysql_query($sql2) or die(mysql_error());
 		// Fetch all the post data from the database
 		while ($row2 = mysql_fetch_assoc($res2)) {
+			$postcreator = getusername($row2['post_creator']);
 			// Echo out the topic post data from the database
 			echo "<tr><td valign='top'><div style='min-height: 125px;'>".$row['topic_title']."<br />by ".getusername($row2['post_creator'])." - ".convertdate($row2['post_date'])."".$row2['post_content']."</div></td>
                               <td width='100' valign='top' align='center'>
-							  <center>						  
-							  <a href='profile.php?username=".getusername($creator)."'><img src=".getavatar($row2['post_creator'])." style='width:70px;height:70px;background:url();background-size:70px 70px;' />
+							  <center>
+							  <a href='user.php?username=".$postcreator."'><img src=".getavatar($row2['post_creator'])." style='width:70px;height:70px;background:url();background-size:70px 70px;' />
 							  <br />".getusername($row2['post_creator'])."
 							  </a>
 							  <hr />

@@ -1,3 +1,24 @@
+<?php
+	require("connect.php");
+	// Function that will retrieve the selected theme
+	function getTheme() {
+		$sql = "SELECT SettingValue FROM settings WHERE SettingName='Theme' LIMIT 1";
+		$res = mysql_query($sql) or die(mysql_error());
+		$row = mysql_fetch_assoc($res);
+		return $row['SettingValue'];
+	}
+	// Function that will retrieve the selected theme
+	function getRoot() {
+		$sql = "SELECT SettingValue FROM settings WHERE SettingName='Root' LIMIT 1";
+		$res = mysql_query($sql) or die(mysql_error());
+		$row = mysql_fetch_assoc($res);
+		return $row['SettingValue'];
+	}
+	
+	$getTheme = getTheme();
+	$Root = getRoot();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,16 +31,11 @@
 
     <title>Login</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap theme -->
-    <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/login.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <?php
+		echo'<!-- Custom styles for this template -->
+		<link href="Themes/'.$getTheme.'/css/login.css" rel="stylesheet">
+		<link href="Themes/'.$getTheme.'/css/Style.css" rel="stylesheet">';
+	?>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

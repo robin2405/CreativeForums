@@ -13,6 +13,13 @@
 		return $row['SettingValue'];
 	}
 	
+	function count_posts($uid) {
+		$sql = "SELECT * FROM posts WHERE post_creator='".$uid."'";
+		$res = mysql_query($sql) or die(mysql_error());
+		$post_count = mysql_num_rows($res);
+		return $post_count;
+	}
+	
 	function convertdate($date) {
 		$date = strtotime($date);
 		return date("M j, Y g:ia", $date);

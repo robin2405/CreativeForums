@@ -20,6 +20,25 @@ if (isset($_POST['topic_submit'])) {
 		$title = $_POST['topic_title'];
 		$content = $_POST['topic_content'];
 		$creator = $_SESSION['uid'];
+		
+		// Order of replacement
+		$str     = $content;
+		$order   = array("'");
+		$replace = "\'";
+
+		$newstr = str_replace($order, $replace, $str);
+		
+		$content = $newstr;
+		
+		// Order of replacement
+		$str     = $title;
+		$order   = array("'");
+		$replace = "\'";
+
+		$newstr = str_replace($order, $replace, $str);
+		
+		$title = $newstr;
+		
 		// Insert query to enter the topic information into the database
 		$sql = "INSERT INTO topics (category_id, topic_title, topic_creator, topic_date, topic_reply_date) VALUES ('".$cid."', '".$title."', '".$creator."', now(), now())";
 		// Execute the INSERT query

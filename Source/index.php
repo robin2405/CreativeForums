@@ -63,7 +63,7 @@ if (mysql_num_rows($res) == 1) {
 			".$pid."
 			</td>
 			<td width='105' valign='top'><center>
-			<a href='profile.php?username=".getusername($creator)."'><br /><img src=".getavatar($creator)." style='width:70px;height:70px;background:url();background-size:70px 70px;' /><br />
+			<a href='user.php?username=".getusername($creator)."'><br /><img src=".getavatar($creator)." style='width:70px;height:70px;background:url();background-size:70px 70px;' /><br />
 			".getusername($creator)."<br />
 			</a>
 			<hr />

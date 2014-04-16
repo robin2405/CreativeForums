@@ -23,9 +23,19 @@ if ($permission!=$admin) {
 
 
 		$content=$_POST['reply_content'];
+		
+		// Order of replacement
+		$str     = $content;
+		$order   = array("'");
+		$replace = "\'";
+		
+		$newstr = str_replace($order, $replace, $str);
+		
+		$content = $newstr;
+		
 		$pid = $_GET['pid'];
-                $cid = $_POST['cid'];
-                $tid = $_POST['tid'];
+        $cid = $_POST['cid'];
+        $tid = $_POST['tid'];
 
 		$sql = "UPDATE posts SET post_content='".$content."' WHERE id='".$pid."'";
 		$res = mysql_query($sql) or die(mysql_error());

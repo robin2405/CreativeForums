@@ -15,6 +15,14 @@ if ($_SESSION['uid']) {
 		$cid = $_POST['cid'];
 		$tid = $_POST['tid'];
 		$reply_content = $_POST['reply_content'];
+		// Order of replacement
+		$str     = $reply_content;
+		$order   = array("'");
+		$replace = "\'";
+
+		$newstr = str_replace($order, $replace, $str);
+		
+		$reply_content = $newstr;
 		// Insert query to enter the information into the posts table
 		$sql = "INSERT INTO posts (category_id, topic_id, post_creator, post_content, post_date) VALUES ('".$cid."', '".$tid."', '".$creator."', '".$reply_content."', now())";
 		// Execute the INSERT query

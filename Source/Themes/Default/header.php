@@ -93,6 +93,7 @@
     </div>
 	
 <center>
+
 <?php
 echo '
 <script language="javascript" type="text/javascript" src="'.$Root.'tiny_mce/tinymce.min.js"></script>
