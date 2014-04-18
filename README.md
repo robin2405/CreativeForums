@@ -41,7 +41,7 @@ I fully support every version of creativeforums as long as it's the current vers
 - Tiny MCE text editor
 - PM system
 - Player posts/topics list
-- Themes system(not finished yet)
+- Themes system
 - Page system(not finished at all)
 - Creating topics/posts/categories....(all basic forum features)
 - More to come!!!
