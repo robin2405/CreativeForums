@@ -1,7 +1,9 @@
 <!doctype html>
 <html>
 <head>
-	<link rel="icon" type="image/ico" href="favicon.ico">
+	<?php
+	echo '
+	<link rel="icon" type="image/ico" href="Themes/'.$getTheme.'/favicon.ico">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,18 +11,9 @@
     <meta name="author" content="J-Designs">
 
     <title>Creative Forums</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <!-- Bootstrap theme -->
-    <link href="../../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-
-    <!-- Custom styles -->
-    <link href="../../bootstrap/css/carousel.css" rel="stylesheet">
-	<link href="css/Style.css" rel="stylesheet">
 	
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="bootstrap/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	<link href="Themes/'.$getTheme.'/css/Style.css" rel="stylesheet">';
+	?>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -95,35 +88,9 @@
 <center>
 
 <?php
-echo '
-<script language="javascript" type="text/javascript" src="'.$Root.'tiny_mce/tinymce.min.js"></script>
-
-<script type="text/javascript">
-
-tinymce.init({
-
-    selector: "textarea",
-
-    theme: "modern",
-
-    plugins: [
-
-        "link image charmap preview anchor pagebreak hr",
-
-        "searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking save table contextmenu directionality emoticons paste image textcolor",
-
-    ],
-
-    toolbar1: "insertfile undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image preview media | forecolor backcolor emoticons",
-
-    templates: [],
-
-});
-
-</script>';
+require 'Sources/editor.php';
 ?>
 
-<!-- END TINYMCE SCRIPT -->
 </center>
 </div>
 		<div class="row row-offcanvas row-offcanvas-right">
