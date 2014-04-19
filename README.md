@@ -43,6 +43,6 @@ I fully support every version of creativeforums as long as it's the current vers
 - PM system
 - Player posts/topics list
 - Themes system
-- Page system(not finished at all)
+- Page system(basics done)
 - Creating topics/posts/categories....(all basic forum features)
 - More to come!!!
