@@ -35,6 +35,9 @@ but i recommend to not use it in active communities yet, because of the lack of 
 ###Support
 Normally, i fully support every version of creativeforums but i recommend using the latest version.
 
+###Bugs
+Report bugs [here](https://github.com/MrDamaru/CreativeForums/issues)
+
 ###Features
 - Admin and user panel
 - Random captcha
