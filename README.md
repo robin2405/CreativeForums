@@ -33,7 +33,7 @@ This build can be used but is not recommended although i really need testers so 
 but i recommend to not use it in active communities yet, because of the lack of testing.
 
 ###Support
-I fully support every version of creativeforums as long as it's the current version if you are using a version from last year or anything then i won't support it.
+Normally, i fully support every version of creativeforums but i recommend using the latest version.
 
 ###Features
 - Admin and user panel
