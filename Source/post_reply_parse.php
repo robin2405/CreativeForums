@@ -26,11 +26,11 @@ if ($_SESSION['uid']) {
 		// Execute the INSERT query
 		$res = mysql_query($sql) or die(mysql_error());
 		// Update query that will update the category that is associated with this topic reply
-		$sql2 = "UPDATE categories SET last_post_date=now(), last_user_posted='".$creator."' WHERE id='".$cid."' LIMIT 1";
+		$sql2 = "UPDATE categories SET last_post_date=now(), last_user_posted='".mysql_real_escape_string($creator)."' WHERE id='".mysql_real_escape_string($cid)."' LIMIT 1";
 		// Execute the category UPDATE query
 		$res2 = mysql_query($sql2) or die(mysql_error());
 		// Update query that will update the topic that is associated with this topic reply
-		$sql3 = "UPDATE topics SET topic_reply_date=now(), topic_last_user='".$creator."' WHERE id='".$tid."' LIMIT 1";
+		$sql3 = "UPDATE topics SET topic_reply_date=now(), topic_last_user='".mysql_real_escape_string($creator)."' WHERE id='".mysql_real_escape_string($tid)."' LIMIT 1";
 		// Execute the topic UPDATE query
 		$res3 = mysql_query($sql3) or die(mysql_error());
 		

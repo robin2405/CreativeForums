@@ -30,7 +30,7 @@ function convertdate($date) {
 
 $mid=$_GET['mid'];
 
-  $sql = "DELETE FROM Messages WHERE ID='".$mid."'";
+  $sql = "DELETE FROM Messages WHERE ID='".mysql_real_escape_string($mid)."'";
   $res = mysql_query($sql) or die(mysql_error());
   mysqli_close($con);
   header("Location: user.php?page=6");

@@ -34,11 +34,11 @@ if (isset($_POST['cat_submit'])) {
         $title=$_POST['catname'];
 		$pid = $_GET['cid'];
 
-		$sql = "UPDATE categories SET category_description='".$desc."' WHERE id='".$pid."'";
+		$sql = "UPDATE categories SET category_description='".mysql_real_escape_string($desc)."' WHERE id='".mysql_real_escape_string($pid)."'";
 		$res = mysql_query($sql) or die(mysql_error());
 		$row = mysql_fetch_assoc($res);
 		mysql_close($con);
-			$sql = "UPDATE categories SET category_title='".$title."' WHERE id='".$pid."'";
+			$sql = "UPDATE categories SET category_title='".mysql_real_escape_string($title)."' WHERE id='".mysql_real_escape_string($pid)."'";
 			$res = mysql_query($sql) or die(mysql_error());
 			$row = mysql_fetch_assoc($res);
 			header("location: editcat.php");

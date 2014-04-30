@@ -14,7 +14,7 @@ if ((!isset($_SESSION['uid']))) {
 }
 
 Function GetUserID($name){
-	$sql = "SELECT id FROM users WHERE username='".$name."' LIMIT 1";
+	$sql = "SELECT id FROM users WHERE username='".mysql_real_escape_string($name)."' LIMIT 1";
 	$res = mysql_query($sql) or die(mysql_error());
 	$row = mysql_fetch_assoc($res);
 	return $row['id'];
@@ -27,7 +27,7 @@ Function GetUserID($name){
                 $uid=$_SESSION['uid'];
 
 		// Insert query to enter the information into the posts table
-		$sql = "INSERT INTO Messages (Sender,Target,Title,Content,Date) VALUES ('".$uid."' ,'".$target."','".$title."','".$content."',now())";
+		$sql = "INSERT INTO Messages (Sender,Target,Title,Content,Date) VALUES ('".mysql_real_escape_string($uid)."' ,'".$target."','".mysql_real_escape_string($title)."','".mysql_real_escape_string($content)."',now())";
 		// Execute the INSERT query
 		$res = mysql_query($sql) or die(mysql_error());
 		$row = mysql_fetch_assoc($res);

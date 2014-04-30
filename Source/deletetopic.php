@@ -17,14 +17,14 @@ include_once("header.php");
 
 
 function getposter($tid) {
-	$sql = "SELECT topic_creator FROM topics WHERE id='".$tid."' LIMIT 1";
+	$sql = "SELECT topic_creator FROM topics WHERE id='".mysql_real_escape_string($tid)."' LIMIT 1";
 	$res = mysql_query($sql) or die(mysql_error());
 	$row = mysql_fetch_assoc($res);
 	return $row['topic_creator'];
 }
 
 function getcid($tid) {
-	$sql = "SELECT category_id FROM topics WHERE id='".$tid."' LIMIT 1";
+	$sql = "SELECT category_id FROM topics WHERE id='".mysql_real_escape_string($tid)."' LIMIT 1";
 	$res = mysql_query($sql) or die(mysql_error());
 	$row = mysql_fetch_assoc($res);
 	return $row['category_id'];

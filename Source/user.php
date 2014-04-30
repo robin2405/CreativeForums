@@ -14,7 +14,7 @@
 	}
 	
 	function count_posts($uid) {
-		$sql = "SELECT * FROM posts WHERE post_creator='".$uid."'";
+		$sql = "SELECT * FROM posts WHERE post_creator='".mysql_real_escape_string($uid)."'";
 		$res = mysql_query($sql) or die(mysql_error());
 		$post_count = mysql_num_rows($res);
 		return $post_count;
@@ -26,14 +26,14 @@
 	}
 	
 	function Target($uid) {
-		$sql = "SELECT Target FROM Messages WHERE id='".$uid."'";
+		$sql = "SELECT Target FROM Messages WHERE id='".mysql_real_escape_string($uid)."'";
 		$res = mysql_query($sql) or die(mysql_error());
 		$row = mysql_fetch_assoc($res);
 		return $row['Target'];
 	}
 
 	function view($mid) {
-		$sql = "UPDATE Messages SET viewed='1' WHERE id='".$mid."'";
+		$sql = "UPDATE Messages SET viewed='1' WHERE id='".mysql_real_escape_string($mid)."'";
 		$res = mysql_query($sql) or die(mysql_error());
 	}
 
@@ -212,7 +212,7 @@
 							  <tbody>";
 						$uid = $_SESSION['uid'];
 						// Query the posts table for all posts in the specified topic
-						$sql2 = "SELECT * FROM Messages WHERE id='".$mid."' LIMIT 1";
+						$sql2 = "SELECT * FROM Messages WHERE id='".mysql_real_escape_string($mid)."' LIMIT 1";
 						// Execute the SELECT query
 						$res2 = mysql_query($sql2) or die(mysql_error());
 						// Fetch all the post data from the database
@@ -229,7 +229,7 @@
 				}
 			} else if($PageID=="9"){
 				Function GetSubject($mid){
-					$sql = "SELECT Title FROM Messages WHERE ID='".$mid."' LIMIT 1";
+					$sql = "SELECT Title FROM Messages WHERE ID='".mysql_real_escape_string($mid)."' LIMIT 1";
 					$res = mysql_query($sql) or die(mysql_error());
 					$row = mysql_fetch_assoc($res);
 					return $row['Title'];

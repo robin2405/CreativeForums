@@ -31,7 +31,7 @@ if (isset($_POST['page_submit'])) {
 		$content=$_POST['page_content'];
 		$pid = $_POST['pid'];
 
-		$sql = "UPDATE style SET content='".$content."' WHERE id='".$pid."'";
+		$sql = "UPDATE style SET content='".mysql_real_escape_string($content)."' WHERE id='".mysql_real_escape_string($pid)."'";
 		$res = mysql_query($sql) or die(mysql_error());
 		$row = mysql_fetch_assoc($res);
 		header("location: admin.php");

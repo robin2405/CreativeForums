@@ -19,7 +19,7 @@ if ((!isset($_SESSION['uid']))) {
 }
 
 function gettitle($tid) {
-	$sql = "SELECT topic_creator FROM topics WHERE id='".$tid."' LIMIT 1";
+	$sql = "SELECT topic_creator FROM topics WHERE id='".mysql_real_escape_string($tid)."' LIMIT 1";
 	$res = mysql_query($sql) or die(mysql_error());
 	$row = mysql_fetch_assoc($res);
 	return $row['topic_creator'];
@@ -33,7 +33,7 @@ if (isset($_POST['page_submit'])) {
 		echo "Vul alles in aub.";
 		exit();
 	} else {
-		$sql = "UPDATE topics SET topic_title='".$title."' WHERE id='".$tid."'";
+		$sql = "UPDATE topics SET topic_title='".mysql_real_escape_string($title)."' WHERE id='".mysql_real_escape_string($tid)."'";
 		$res = mysql_query($sql) or die(mysql_error());
 		$row = mysql_fetch_assoc($res);
 		header("location: http://craftopianl.com/view_topic.php?cid=$cid&tid=$tid");

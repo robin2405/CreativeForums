@@ -34,7 +34,7 @@ tinymce.init({
 <?php
 // Function that will convert a user id into their username
 function getposttext($pid) {
-	$sql = "SELECT post_content FROM posts WHERE id='".$pid."' LIMIT 1";
+	$sql = "SELECT post_content FROM posts WHERE id='".mysql_real_escape_string($pid)."' LIMIT 1";
 	$res = mysql_query($sql) or die(mysql_error());
 	$row = mysql_fetch_assoc($res);
 	return $row['post_content'];

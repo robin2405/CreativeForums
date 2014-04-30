@@ -20,7 +20,7 @@ if ($permission!=$admin) {
 
 $pid=$_GET['page'];
 
-  $sql = "DELETE FROM pages WHERE id='".$pid."'";
+  $sql = "DELETE FROM pages WHERE id='".mysql_real_escape_string($pid)."'";
   $res = mysql_query($sql) or die(mysql_error());
   mysqli_close($con);
   header("Location: admin.php?page=3");

@@ -32,7 +32,7 @@ if (isset($_POST['topic_submit'])) {
 		// Execute the INSERT query
 		$res2 = mysql_query($sql2) or die(mysql_error());
 		// Update the forum category associated with this new topic
-		$sql3 = "UPDATE categories SET last_post_date=now(), last_user_posted='".$creator."' WHERE id='".$cid."' LIMIT 1";
+		$sql3 = "UPDATE categories SET last_post_date=now(), last_user_posted='".$creator."' WHERE id='".mysql_real_escape_string($cid)."' LIMIT 1";
 		// Execute the category UPDATE query
 		$res3 = mysql_query($sql3) or die(mysql_error());
 		// Check to make sure all the required queries have been executed

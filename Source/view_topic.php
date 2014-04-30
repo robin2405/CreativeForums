@@ -14,7 +14,7 @@ $start_from = ($page-1) * 5;
 $cid = $_GET['cid'];
 $tid = $_GET['tid'];
 // Select the topic data depending on the $cid and $tid variables
-$sql = "SELECT * FROM topics WHERE category_id='".$cid."' AND id='".$tid."' LIMIT 1";
+$sql = "SELECT * FROM topics WHERE category_id='".mysql_real_escape_string($cid)."' AND id='".mysql_real_escape_string($tid)."' LIMIT 1";
 // Execute the SELECT query
 $res = mysql_query($sql) or die(mysql_error());
 $row = mysql_fetch_assoc($res);
@@ -30,7 +30,7 @@ return $row['id'];
 $cid = $_GET['cid'];
 $tid = $_GET['tid'];
 // Select the topic data depending on the $cid and $tid variables
-$sql = "SELECT * FROM topics WHERE category_id='".$cid."' AND id='".$tid."' LIMIT 1";
+$sql = "SELECT * FROM topics WHERE category_id='".mysql_real_escape_string($cid)."' AND id='".mysql_real_escape_string($tid)."' LIMIT 1";
 // Execute the SELECT query
 $res = mysql_query($sql) or die(mysql_error());
 // Check to see if the topic exists
@@ -48,7 +48,7 @@ if (mysql_num_rows($res) == 1) {
 	// Fetch all the topic data from the database
 	while ($row = mysql_fetch_assoc($res)) {
 		// Query the posts table for all posts in the specified topic
-		$sql2 = "SELECT * FROM posts WHERE category_id='".$cid."' AND topic_id='".$tid."' ORDER BY post_date ASC LIMIT $start_from, 5";
+		$sql2 = "SELECT * FROM posts WHERE category_id='".mysql_real_escape_string($cid)."' AND topic_id='".mysql_real_escape_string($tid)."' ORDER BY post_date ASC LIMIT $start_from, 5";
 		// Execute the SELECT query
 		$res2 = mysql_query($sql2) or die(mysql_error());
 		// Fetch all the post data from the database
@@ -82,7 +82,7 @@ if (mysql_num_rows($res) == 1) {
 		// Add 1 to the current value of the topic views
 		$new_views = $old_views + 1;
 		// Update query that will update the topic_views for this topic
-		$sql3 = "UPDATE topics SET topic_views='".$new_views."' WHERE category_id='".$cid."' AND id='".$tid."' LIMIT 1";
+		$sql3 = "UPDATE topics SET topic_views='".$new_views."' WHERE category_id='".mysql_real_escape_string($cid)."' AND id='".mysql_real_escape_string($tid)."' LIMIT 1";
 		// Execute the UPDATE query
 		$res3 = mysql_query($sql3) or die(mysql_error());
 	}
@@ -90,7 +90,7 @@ echo "</tbody>
             </table>
 			</div>";
 
-$sql = "SELECT * FROM posts WHERE topic_id='".$tid."' AND category_id='".$cid."'"; 
+$sql = "SELECT * FROM posts WHERE topic_id='".mysql_real_escape_string($tid)."' AND category_id='".mysql_real_escape_string($cid)."'"; 
 $rs_result = mysql_query($sql2) or die(mysql_error());
 $row = mysql_num_rows($rs_result);
 $total_pages = ceil($row / 5); 
