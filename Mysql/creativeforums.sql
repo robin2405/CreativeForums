@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 01 jun 2014 om 17:36
+-- Gegenereerd op: 01 jun 2014 om 17:39
 -- Serverversie: 5.6.16
 -- PHP-versie: 5.5.9
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 --
 
 INSERT INTO `categories` (`id`, `category_title`, `category_description`, `last_post_date`, `last_user_posted`) VALUES
-(1, 'Nieuws', 'Here you can find all the news', '2014-04-10 17:59:12', 35);
+(1, 'News', 'Here you can find all the news', '2014-04-10 17:59:12', 35);
 
 -- --------------------------------------------------------
 
@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `avatar`, `rank`, `Permission`, `Last_Active`, `salt`) VALUES
-(35, 'admin', '$2y$10$coiXczbLoCNJ1UyZG6NkjOubQeCadOmK5hbuaJCl4IJeKwhwYjR1S', 'jdemo@live.be', 'Resources/upload/370.png', 'member', 'admin', '2014-06-01 17:36:36', 'v.6ERaDJuMrxDwD');
+(35, 'admin', '$2y$10$coiXczbLoCNJ1UyZG6NkjOubQeCadOmK5hbuaJCl4IJeKwhwYjR1S', 'jdemo@live.be', 'Resources/upload/370.png', 'member', 'admin', '2014-06-01 17:39:11', 'v.6ERaDJuMrxDwD');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
