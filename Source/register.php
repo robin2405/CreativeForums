@@ -36,5 +36,5 @@
 			<a href="#" onclick="document.getElementById('.$captcha.').src = '.$CaptchaUrl.' + Math.random(); return false">[ Different Image ]</a></center>
 			<br /><button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Register</button>
 		</form>
-	</div> ';
+	</div>';
 ?>
