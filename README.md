@@ -9,7 +9,8 @@ Because i personally think that open-source simply is the best, some people argu
 
 Also if you make a project open-source and you get a quit nice community behind it then you also will get support while developing from your users and they'll say why don't you do this instead of that... so it also improves the engine because lots of people can look into the code and check for bugs and improvements, instead of a small team.
 
-[Temporary official topic](http://www.eclipseorigins.com/community/index.php?/topic/133172-creative-forums-forum-and-portal-engine/)
+###What makes this engine unique?
+It will be a forum engines aiming for performance, multimedia, design and compatibility for every device. The most important part of the project will be the multimedia part, you will be able to post everything: songs, record video's, play video's, record sound, post images, edit images,...
 
 ###Donate
 [Paypal Donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=3M2GLXPQW9VD6&lc=NL&item_name=Creative%20Forums&currency_code=EUR&bn=PP-DonationsBF%3Abtn_donateCC_LG.gif%3ANonHosted)
@@ -41,7 +42,7 @@ Report bugs [here](https://github.com/MrDamaru/CreativeForums/issues)
 ###Features
 - Admin and user panel
 - Random captcha
-- Bcrypt encrypted passwords with random salt (very safe)
+- Bcrypt encrypted passwords with extra random salt (very safe)
 - Tiny MCE text editor
 - PM system
 - Player posts/topics list
