@@ -28,7 +28,7 @@ if (isset($_POST['username'])) {
 		$hash = gethash($username);
 		if(password_verify($password, $hash)) {
 			// Select data from the users table depending on the entered inputs
-			$sql = "SELECT * FROM users WHERE username='".$username."' LIMIT 1";
+			$sql = "SELECT * FROM users WHERE username='".mysql_real_escape_string($username)."' LIMIT 1";
 			// Execute the SELECT query
 			$res = mysql_query($sql) or die(mysql_error());
 			// Check to see if the data entered into the login form matches the database information

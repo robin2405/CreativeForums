@@ -6,7 +6,7 @@ include('connect.php');
 $name=$_POST['name'];
 $uid = $_SESSION['uid'];
 
-$sql = "UPDATE users SET username='".$name."' WHERE id='".$uid."'";
+$sql = "UPDATE users SET username='".mysql_real_escape_string($name)."' WHERE id='".$uid."'";
 $res = mysql_query($sql) or die(mysql_error());
 $row = mysql_fetch_assoc($res);
 header("location: index.php");

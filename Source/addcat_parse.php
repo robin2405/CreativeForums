@@ -25,7 +25,7 @@ if ($permission!=$admin) {
 				$desc=$_POST['catdesc'];
 
 		// Insert query to enter the information into the posts table
-		$sql = "INSERT INTO categories (category_description,category_title) VALUES ('".$desc."' ,'".$title."')";
+		$sql = "INSERT INTO categories (category_description,category_title) VALUES ('".mysql_real_escape_string($desc)."' ,'".mysql_real_escape_string($title)."')";
 		// Execute the INSERT query
 		$res = mysql_query($sql) or die(mysql_error());
 		$row = mysql_fetch_assoc($res);

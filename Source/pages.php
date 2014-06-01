@@ -8,7 +8,7 @@ include_once("connect.php");
 
 // Function that will convert a user id into their username
 function getpage($pid) {
-	$sql = "SELECT content FROM pages WHERE id='".$pid."' LIMIT 1";
+	$sql = "SELECT content FROM pages WHERE id='".mysql_real_escape_string($pid)."' LIMIT 1";
 	$res = mysql_query($sql) or die(mysql_error());
 	$row = mysql_fetch_assoc($res);
 	return $row['content'];

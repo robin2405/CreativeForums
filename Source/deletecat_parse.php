@@ -20,7 +20,7 @@ if ($permission!=$admin) {
 
 $cid=$_GET['cat'];
 
-  $sql = "DELETE FROM categories WHERE id='".$cid."'";
+  $sql = "DELETE FROM categories WHERE id='".mysql_real_escape_string($cid)."'";
   $res = mysql_query($sql) or die(mysql_error());
   mysqli_close($con);
   header("Location: admin.php?page=1");

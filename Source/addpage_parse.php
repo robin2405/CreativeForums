@@ -24,7 +24,7 @@ if ($permission!=$admin) {
                 $title=$_POST['pagename'];
 
 		// Insert query to enter the information into the posts table
-		$sql = "INSERT INTO pages (content,title) VALUES ('Leeg...' ,'".$title."')";
+		$sql = "INSERT INTO pages (content,title) VALUES ('Leeg...' ,'".mysql_real_escape_string($title)."')";
 		// Execute the INSERT query
 		$res = mysql_query($sql) or die(mysql_error());
 		$row = mysql_fetch_assoc($res);

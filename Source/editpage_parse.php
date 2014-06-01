@@ -34,11 +34,11 @@ if (isset($_POST['page_submit'])) {
                 $title=$_POST['pagename'];
 		$pid = $_POST['pid'];
 
-		$sql = "UPDATE pages SET content='".$content."' WHERE id='".$pid."'";
+		$sql = "UPDATE pages SET content='".mysql_real_escape_string($content)."' WHERE id='".mysql_real_escape_string($pid)."'";
 		$res = mysql_query($sql) or die(mysql_error());
 		$row = mysql_fetch_assoc($res);
                 mysql_close($con);
-                $sql = "UPDATE pages SET title='".$title."' WHERE id='".$pid."'";
+                $sql = "UPDATE pages SET title='".mysql_real_escape_string($title)."' WHERE id='".mysql_real_escape_string($pid)."'";
 		$res = mysql_query($sql) or die(mysql_error());
 		$row = mysql_fetch_assoc($res);
 		header("location: editpage2.php");

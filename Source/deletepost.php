@@ -16,21 +16,21 @@ if ((!isset($_SESSION['uid']))) {
 include_once("header.php");
 
 function getposter($pid) {
-	$sql = "SELECT post_creator FROM posts WHERE id='".$pid."' LIMIT 1";
+	$sql = "SELECT post_creator FROM posts WHERE id='".mysql_real_escape_string($pid)."' LIMIT 1";
 	$res = mysql_query($sql) or die(mysql_error());
 	$row = mysql_fetch_assoc($res);
 	return $row['post_creator'];
 }
 
 function gettid($pid) {
-	$sql = "SELECT topic_id FROM posts WHERE id='".$pid."' LIMIT 1";
+	$sql = "SELECT topic_id FROM posts WHERE id='".mysql_real_escape_string($pid)."' LIMIT 1";
 	$res = mysql_query($sql) or die(mysql_error());
 	$row = mysql_fetch_assoc($res);
 	return $row['topic_id'];
 }
 
 function getcid($pid) {
-	$sql = "SELECT category_id FROM posts WHERE id='".$pid."' LIMIT 1";
+	$sql = "SELECT category_id FROM posts WHERE id='".mysql_real_escape_string($pid)."' LIMIT 1";
 	$res = mysql_query($sql) or die(mysql_error());
 	$row = mysql_fetch_assoc($res);
 	return $row['category_id'];

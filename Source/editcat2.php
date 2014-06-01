@@ -32,14 +32,14 @@ include_once("header.php");
 
 
 function getdesc($pid) {
-	$sql = "SELECT category_description FROM categories WHERE id='".$pid."' LIMIT 1";
+	$sql = "SELECT category_description FROM categories WHERE id='".mysql_real_escape_string($pid)."' LIMIT 1";
 	$res = mysql_query($sql) or die(mysql_error());
 	$row = mysql_fetch_assoc($res);
 	return $row['category_description'];
 }
 
 function gettitle($pid) {
-	$sql = "SELECT category_title FROM categories WHERE id='".$pid."' LIMIT 1";
+	$sql = "SELECT category_title FROM categories WHERE id='".mysql_real_escape_string($pid)."' LIMIT 1";
 	$res = mysql_query($sql) or die(mysql_error());
 	$row = mysql_fetch_assoc($res);
 	return $row['category_title'];

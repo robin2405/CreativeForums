@@ -28,7 +28,7 @@ if ($permission!=$admin) {
         $cid = $_POST['cid'];
         $tid = $_POST['tid'];
 
-		$sql = "UPDATE posts SET post_content='".mysql_real_escape_string($content)."' WHERE id='".$pid."'";
+		$sql = "UPDATE posts SET post_content='".mysql_real_escape_string($content)."' WHERE id='".mysql_real_escape_string($pid)."'";
 		// Insert query to enter the information into the posts table
 		$res = mysql_query($sql) or die(mysql_error());
 		$row = mysql_fetch_assoc($res);
