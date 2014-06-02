@@ -23,8 +23,7 @@
 	            $.ajax({
 	                url: "Functions/UpdateUserOnline.php" ,
 	                success : function() { 
-	                    // function below reloads current page
-	                    location.reload();
+	                    // Do something when the code is executed
 	                }
 	            });
         	}

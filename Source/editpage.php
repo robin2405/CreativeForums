@@ -1,16 +1,10 @@
 <?php
-
-session_start(); // Start your sessions to allow your page to interact with session variables
-
-include_once("connect.php");
+include_once("header.php");
 
 // Assign local variables
 $pid = $_GET['pid'];
 
-
-
 // Check to see if they person accessing this page is logged in and that there is a category id in the url
-
 if ((!isset($_SESSION['uid']))) {
 
 	header("Location: index.php");
@@ -26,10 +20,6 @@ if ($permission!=$admin) {
 	exit();
 
 }
-
-include_once("header.php");
-
-
 
 function getpage($pid) {
 	$sql = "SELECT content FROM pages WHERE id='".mysql_real_escape_string($pid)."' LIMIT 1";

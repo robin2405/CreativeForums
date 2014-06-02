@@ -12,35 +12,13 @@
 		$row = mysql_fetch_assoc($res);
 		return $row['SettingValue'];
 	}
-	
-	function count_posts($uid) {
-		$sql = "SELECT * FROM posts WHERE post_creator='".mysql_real_escape_string($uid)."'";
-		$res = mysql_query($sql) or die(mysql_error());
-		$post_count = mysql_num_rows($res);
-		return $post_count;
-	}
-	
-	function convertdate($date) {
-		$date = strtotime($date);
-		return date("M j, Y g:ia", $date);
-	}
-	
-	function Target($uid) {
-		$sql = "SELECT Target FROM Messages WHERE id='".mysql_real_escape_string($uid)."'";
-		$res = mysql_query($sql) or die(mysql_error());
-		$row = mysql_fetch_assoc($res);
-		return $row['Target'];
-	}
-
-	function view($mid) {
-		$sql = "UPDATE Messages SET viewed='1' WHERE id='".mysql_real_escape_string($mid)."'";
-		$res = mysql_query($sql) or die(mysql_error());
-	}
 
 	$getTheme = getTheme();
 	
 	include_once("Themes/".$getTheme."/ProfileHeader.php");
 	
+	LoadClass("Messages");
+
 	echo'
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		  <div class="container-fluid">
@@ -152,7 +130,7 @@
 							while ($row2 = mysql_fetch_assoc($res2)) {
 								// Echo out the topic post data from the database
 											$mid=$row2['ID'];
-								echo "<tr><td valign='top'>Send by: ".getusername($row2['Sender'])."</td><td><a href='user.php?page=8&mid=".$mid."'>Subject: ".$row2['Title']."</td><td>".convertdate($row2['Date'])."</a></td><td><a href='DelMessage.php?mid=".$mid."'>Delete</a></td></tr>";
+								echo "<tr><td valign='top'>Send by: ".User::getusername($row2['Sender'])."</td><td><a href='user.php?page=8&mid=".$mid."'>Subject: ".$row2['Title']."</td><td>".Convert::convertdate($row2['Date'])."</a></td><td><a href='DelMessage.php?mid=".$mid."'>Delete</a></td></tr>";
 							}
 					echo "</tbody>
 								</table>
@@ -186,7 +164,7 @@
 						while ($row2 = mysql_fetch_assoc($res2)) {
 										$mid=$row2['ID'];
 							// Echo out the topic post data from the database
-							echo "<tr><td valign='top'>Send to: ".getusername($row2['Target'])."</td><td><a href='user.php?page=8&mid=".$mid."'>Subject: ".$row2['Title']."</a></td><td>".convertdate($row2['Date'])."</td></tr>";
+							echo "<tr><td valign='top'>Send to: ".User::getusername($row2['Target'])."</td><td><a href='user.php?page=8&mid=".$mid."'>Subject: ".$row2['Title']."</a></td><td>".Convert::convertdate($row2['Date'])."</td></tr>";
 						}
 				echo "</tbody>
 								</table>
@@ -200,8 +178,8 @@
 							echo "<a href='?page=7&pagenr=".$i."'>".$i."</a> ";
 				}
 			} else if($PageID=="8"){
-				if (Target($mid) == $uid) {
-				view($mid);
+				if (Messages::Target($mid) == $uid) {
+				Messages::view($mid);
 				echo "<div class='table-responsive'>
 						<table class='table table-striped'>
 							  <thead>
@@ -218,7 +196,7 @@
 						// Fetch all the post data from the database
 						while ($row2 = mysql_fetch_assoc($res2)) {
 							// Echo out the topic post data from the database
-							echo "<tr><td valign='top'>Send by: ".getusername($row2['Sender'])."</td><td>".convertdate($row2['Date'])."</td><td>".$row2['Content']."</td></tr>";
+							echo "<tr><td valign='top'>Send by: ".User::getusername($row2['Sender'])."</td><td>".Convert::convertdate($row2['Date'])."</td><td>".$row2['Content']."</td></tr>";
 										echo "</tbody>
 							</table>
 							</div>";
@@ -261,7 +239,7 @@
 				<table class='table table-striped'>
 				<thead>
 								<tr>
-								  <th>Topics of ".getusername($uid)."</th>
+								  <th>Topics of ".User::getusername($uid)."</th>
 								  <th>Date</th>
 								  <th>Title</th>
 								</tr>
@@ -275,7 +253,7 @@
 						// Fetch all the post data from the database
 						while ($row2 = mysql_fetch_assoc($res2)) {
 							// Echo out the topic post data from the database
-							echo "<tr><td valign='top'>".getusername($uid)."</td><td>".convertdate($row2['topic_date'])."</td><td>".$row2['topic_title']."</td></tr>";
+							echo "<tr><td valign='top'>".User::getusername($uid)."</td><td>".Convert::convertdate($row2['topic_date'])."</td><td>".$row2['topic_title']."</td></tr>";
 						}
 				echo "</tbody>
 							</table>
@@ -293,7 +271,7 @@
 				<table class='table table-striped'>
 				<thead>
 								<tr>
-								  <th>Posts of ".getusername($uid)."</th>
+								  <th>Posts of ".User::getusername($uid)."</th>
 								  <th>Date</th>
 								  <th>Content</th>
 								</tr>
@@ -307,7 +285,7 @@
 						// Fetch all the post data from the database
 						while ($row2 = mysql_fetch_assoc($res2)) {
 							// Echo out the topic post data from the database
-							echo "<tr><td valign='top'>".getusername($uid)."</td><td>".convertdate($row2['post_date'])."</td><td>".$row2['post_content']."</td></tr>";
+							echo "<tr><td valign='top'>".User::getusername($uid)."</td><td>".Convert::convertdate($row2['post_date'])."</td><td>".$row2['post_content']."</td></tr>";
 						}
 				echo "</tbody>
 							</table>
@@ -344,10 +322,10 @@
 						echo "
 						<center>
 						<table>
-						<tr><td><center>".getusername($uid)."</center><br /></td></tr>
-						<tr><td><center><img src='".getavatar($uid)."' style='width:200px;height:200px;' /></center><br /></td></tr>
-						<tr><td><center>Email: ".getemail($uid)."</center><br /></td></tr>
-						<tr><td><center>Rank: ".getrank($uid)."</center><br /></td></tr>
+						<tr><td><center>".User::getusername($uid)."</center><br /></td></tr>
+						<tr><td><center><img src='".User::getavatar($uid)."' style='width:200px;height:200px;' /></center><br /></td></tr>
+						<tr><td><center>Email: ".User::getemail($uid)."</center><br /></td></tr>
+						<tr><td><center>Rank: ".User::getrank($uid)."</center><br /></td></tr>
 						<tr><td><center>Posts: ".$post_count."</center><br /></td></tr>
 						</table>
 						</center>
