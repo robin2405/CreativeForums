@@ -63,7 +63,7 @@
 			} else {
 				echo'
 				<li class="dropdown">
-					<a href="user.php" class="dropdown-toggle" data-toggle="dropdown">'.getusername($uid).'<b class="caret"></b></a>
+					<a href="user.php" class="dropdown-toggle" data-toggle="dropdown">'.User::getusername($uid).'<b class="caret"></b></a>
 					<ul class="dropdown-menu">';
 					if ($permission==$admin) {
 						echo'

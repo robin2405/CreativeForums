@@ -20,7 +20,7 @@ echo "<div class='table-responsive'>
 			  <tbody>";
 $uid = $_SESSION['uid'];
 		// Query the posts table for all posts in the specified topic
-		$sql2 = "SELECT * FROM users WHERE TIMESTAMPDIFF(MINUTE,`last_Active`,NOW()) <= 15 LIMIT $start_from, 20";
+		$sql2 = "SELECT * FROM users WHERE TIMESTAMPDIFF(SECOND,`last_Active`,NOW()) <= 5 LIMIT $start_from, 20";
 		// Execute the SELECT query
 		$res2 = mysql_query($sql2) or die(mysql_error());
 		// Fetch all the post data from the database
@@ -35,7 +35,7 @@ $uid = $_SESSION['uid'];
 echo "</tbody>
             </table>
 			</div>";
-$sql = "SELECT id FROM users WHERE TIMESTAMPDIFF(MINUTE,`last_Active`,NOW()) <= 15"; 
+$sql = "SELECT id FROM users WHERE TIMESTAMPDIFF(SECOND,`last_Active`,NOW()) <= 5"; 
 $rs_result = mysql_query($sql2) or die(mysql_error());
 $row = mysql_num_rows($rs_result);
 $total_pages = ceil($row / 20); 
