@@ -31,10 +31,7 @@ Here are the libraries we used:
 If you use this engine you agree to the license (look at the license.md for more information)
 
 ###Current Version
-The current version is Alpha V0.0.3
-
-This build can be used but is not recommended although i really need testers so go test it out!
-but i recommend to not use it in active communities yet, because of the lack of testing.
+Look at the release page here: [Releases page](https://github.com/MrDamaru/CreativeForums/releases)
 
 ###Support
 Normally, i fully support every version of creativeforums but i recommend using the latest version.
