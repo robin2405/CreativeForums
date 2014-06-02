@@ -117,7 +117,7 @@
 									  <th>Messages</th>
 									  <th></th>
 									  <th></th>
-									  <th><div align='right'><button type='button' class='btn btn-sm btn-primary'  onClick=\"window.location = 'newmessage.php'\">Compose Message</button></div></th>
+									  <th><div align='right'><button type='button' class='btn btn-sm btn-primary'  onClick=\"window.location = '?page=5'\">Compose Message</button></div></th>
 									</tr>
 								  </thead>
 								  <tbody>";
