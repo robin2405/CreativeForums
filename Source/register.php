@@ -1,7 +1,15 @@
 <?php
-	require("connect.php");
+	// Loading Classes
+	function LoadClass($class){
+	    include_once('Classes/' . $class . '.class.php');
+	}
+
+	LoadClass("Connect");
+	$link = DbConnection::getConnection();
+	
 	// Function that will retrieve the selected theme
 	function getTheme() {
+		$link = DbConnection::getConnection();
 		$sql = "SELECT SettingValue FROM settings WHERE SettingName='Theme' LIMIT 1";
 		$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
 		$row = mysqli_fetch_assoc($res);
@@ -9,6 +17,7 @@
 	}
 	// Function that will retrieve the selected theme
 	function getRoot() {
+		$link = DbConnection::getConnection();
 		$sql = "SELECT SettingValue FROM settings WHERE SettingName='Root' LIMIT 1";
 		$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
 		$row = mysqli_fetch_assoc($res);

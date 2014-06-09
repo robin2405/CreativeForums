@@ -1,7 +1,13 @@
 <?php
 session_start(); // Start your sessions to allow your page to interact with session variables
 
-include('connect.php');
+// Loading Classes
+function LoadClass($class){
+    include_once('Classes/' . $class . '.class.php');
+}
+
+LoadClass("Connect");
+$link = DbConnection::getConnection();
 
 $name=$_POST['name'];
 $uid = $_SESSION['uid'];

@@ -18,6 +18,7 @@ include_once("header.php");
 
 
 function getposter($tid) {
+	$link = DbConnection::getConnection();
 	$sql = "SELECT topic_creator FROM topics WHERE id='".mysqli_real_escape_string($link, $tid)."' LIMIT 1";
 	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
 	$row = mysqli_fetch_assoc($res);
@@ -25,6 +26,7 @@ function getposter($tid) {
 }
 
 function getcid($tid) {
+	$link = DbConnection::getConnection();
 	$sql = "SELECT category_id FROM topics WHERE id='".mysqli_real_escape_string($link, $tid)."' LIMIT 1";
 	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
 	$row = mysqli_fetch_assoc($res);

@@ -18,6 +18,7 @@ $res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
 $row = mysqli_fetch_assoc($res);
 
 function get_postid($uid) {
+	$link = DbConnection::getConnection();
 	$sql = "SELECT * FROM posts WHERE post_creator='".$uid."'";
 	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
 	$row = mysqli_fetch_assoc($res);

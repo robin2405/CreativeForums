@@ -1,9 +1,10 @@
 <?php
-	include_once("Classes/Connect.class.php");
+include_once("Classes/Connect.class.php");
 $link = DbConnection::getConnection();
 	
 // Function that will retrieve the selected theme
 function getTheme() {
+	$link = DbConnection::getConnection();
 	$sql = "SELECT SettingValue FROM settings WHERE SettingName='Theme' LIMIT 1";
 	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
 	$row = mysqli_fetch_assoc($res);
@@ -103,8 +104,3 @@ function getTheme() {
 				?>
 			</p>
         </div>
-		
-		<?php
-			include_once("Classes/Connect.class.php");
-$link = DbConnection::getConnection();
-		?>
