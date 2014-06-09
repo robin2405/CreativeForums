@@ -1,6 +1,10 @@
 CreativeForums
 ==============
 
+###Download information
+Only download the release versions in the release section of this repository.
+The github repository is most of the time full with bugs and only made for developers and used to share the code between the creativeforums developers.
+
 ###Information
 Creative forums is a professional free open-source forum and portal engine, it is designed to make forums simple fast and easy and also look professional and for professional coders/programmers it is also simple to edit the codes because of the simple structure we use. I also try to make this forum engine the safest and easiest engine around the internet. I also want this engine to become simple to edit with theme editors, selectors, and visualy nice page, category,... editor. This engine will also be easy extendable with the possibility of mods with this feature you will be able to add things to your portal/forum with only a few clicks for example i wanna add a slideshow/carousel i just type in "Carousel" in the searchbox and i find some pretty nice mods i pick one out go to the settings and select the images and DONE
 
