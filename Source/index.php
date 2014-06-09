@@ -7,19 +7,20 @@ LoadClass("Topic");
 
 // Assign local variables
 $cid = 1;
+$link = DbConnection::getConnection();
 
 // Query that checks to see if the category specified in the $cid variable actually exists in the database
 $sql = "SELECT id FROM categories WHERE id='".$cid."' LIMIT 5";
 // Execute the SELECT query
-$res = mysql_query($sql) or Mysql::HandleError(mysql_error());
+$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
 // Check if the category exists
-if (mysql_num_rows($res) == 1) {
+if (mysqli_num_rows($res) == 1) {
     // Select the topics that are associated with this category id and order by the topic_reply_date
     $sql2 = "SELECT * FROM topics WHERE category_id='".$cid."' ORDER BY topic_reply_date DESC LIMIT 5";
     // Execute the SELECT query
-    $res2 = mysql_query($sql2) or Mysql::HandleError(mysql_error());
+    $res2 = mysqli_query($link, $sql2);
     // Check to see if there are topics in the category
-    if (mysql_num_rows($res2) >= 0) {
+    if (mysqli_num_rows($res2) >= 0) {
         // Appending table data to the $topics variable for output on the page
         $table .= "<div class='table-responsive'>
 				   <table class='table table-striped'>";
@@ -31,7 +32,7 @@ if (mysql_num_rows($res) == 1) {
               </thead>
 			  <tbody>";
         // Fetching topic data from the database
-        while ($row = mysql_fetch_assoc($res2)) {
+        while ($row = mysqli_fetch_assoc($res2)) {
             // Assign local variables from the database data
             $tid = $row['id'];
             $title = $row['topic_title'];

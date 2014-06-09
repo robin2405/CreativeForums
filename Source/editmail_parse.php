@@ -6,9 +6,9 @@ include('connect.php');
 $email=$_POST['email'];
 $uid = $_SESSION['uid'];
 
-$sql = "UPDATE users SET email='".mysql_real_escape_string($email)."' WHERE id='".$uid."'";
-$res = mysql_query($sql) or die(mysql_error());
-$row = mysql_fetch_assoc($res);
+$sql = "UPDATE users SET email='".mysqli_real_escape_string($link, $email)."' WHERE id='".$uid."'";
+$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+$row = mysqli_fetch_assoc($res);
 header("location: index.php");
 mysql_close($con);
 ?>

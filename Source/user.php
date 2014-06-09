@@ -1,15 +1,17 @@
-<?php
-	include_once("connect.php");
-	
+<?php	
+	include_once('Classes/Connect.class.php');
+	$link = DbConnection::getConnection();
+
 	if (isset($_GET['pagenr'])) { $page  = $_GET['pagenr']; } else { $page='1'; };
 	$start_from = ($page-1) * 5;
 	
 	if (isset($_GET['mid'])) { $mid  = $_GET['mid']; } else { $mid=''; };
 	
 	function getTheme() {
+		$link = DbConnection::getConnection();
 		$sql = "SELECT SettingValue FROM settings WHERE SettingName='Theme' LIMIT 1";
-		$res = mysql_query($sql) or die(mysql_error());
-		$row = mysql_fetch_assoc($res);
+		$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+		$row = mysqli_fetch_assoc($res);
 		return $row['SettingValue'];
 	}
 
@@ -125,9 +127,9 @@
 							// Query the posts table for all posts in the specified topic
 							$sql2 = "SELECT * FROM Messages WHERE Target='".$uid."' LIMIT $start_from, 5";
 							// Execute the SELECT query
-							$res2 = mysql_query($sql2) or die(mysql_error());
+							$res2 = mysqli_query($link, $sql2) or Mysql::HandleError(mysqli_error($link));
 							// Fetch all the post data from the database
-							while ($row2 = mysql_fetch_assoc($res2)) {
+							while ($row2 = mysqli_fetch_assoc($res2)) {
 								// Echo out the topic post data from the database
 											$mid=$row2['ID'];
 								echo "<tr><td valign='top'>Send by: ".User::getusername($row2['Sender'])."</td><td><a href='user.php?page=8&mid=".$mid."'>Subject: ".$row2['Title']."</td><td>".Convert::convertdate($row2['Date'])."</a></td><td><a href='DelMessage.php?mid=".$mid."'>Delete</a></td></tr>";
@@ -136,8 +138,8 @@
 								</table>
 								</div>";
 					$sql = "SELECT * FROM Messages WHERE Target='".$uid."'"; 
-					$rs_result = mysql_query($sql) or die(mysql_error());
-					$row = mysql_num_rows($rs_result);
+					$rs_result = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+					$row = mysqli_num_rows($rs_result);
 					$total_pages = ceil($row / 5); 
 					echo "Page ";
 					for ($i=1; $i<=$total_pages; $i++) { 
@@ -159,9 +161,9 @@
 						// Query the posts table for all posts in the specified topic
 						$sql2 = "SELECT * FROM Messages WHERE Sender='".$uid."' LIMIT $start_from, 5";
 						// Execute the SELECT query
-						$res2 = mysql_query($sql2) or die(mysql_error());
+						$res2 = mysqli_query($link, $sql2) or Mysql::HandleError(mysqli_error($link));
 						// Fetch all the post data from the database
-						while ($row2 = mysql_fetch_assoc($res2)) {
+						while ($row2 = mysqli_fetch_assoc($res2)) {
 										$mid=$row2['ID'];
 							// Echo out the topic post data from the database
 							echo "<tr><td valign='top'>Send to: ".User::getusername($row2['Target'])."</td><td><a href='user.php?page=8&mid=".$mid."'>Subject: ".$row2['Title']."</a></td><td>".Convert::convertdate($row2['Date'])."</td></tr>";
@@ -170,8 +172,8 @@
 								</table>
 								</div>";
 				$sql = "SELECT * FROM Messages WHERE Target='".$uid."'"; 
-				$rs_result = mysql_query($sql) or die(mysql_error());
-				$row = mysql_num_rows($rs_result);
+				$rs_result = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+				$row = mysqli_num_rows($rs_result);
 				$total_pages = ceil($row / 5); 
 				echo "Page ";
 				for ($i=1; $i<=$total_pages; $i++) { 
@@ -190,11 +192,11 @@
 							  <tbody>";
 						$uid = $_SESSION['uid'];
 						// Query the posts table for all posts in the specified topic
-						$sql2 = "SELECT * FROM Messages WHERE id='".mysql_real_escape_string($mid)."' LIMIT 1";
+						$sql2 = "SELECT * FROM Messages WHERE id='".mysqli_real_escape_string($link, $mid)."' LIMIT 1";
 						// Execute the SELECT query
-						$res2 = mysql_query($sql2) or die(mysql_error());
+						$res2 = mysqli_query($link, $sql2) or Mysql::HandleError(mysqli_error($link));
 						// Fetch all the post data from the database
-						while ($row2 = mysql_fetch_assoc($res2)) {
+						while ($row2 = mysqli_fetch_assoc($res2)) {
 							// Echo out the topic post data from the database
 							echo "<tr><td valign='top'>Send by: ".User::getusername($row2['Sender'])."</td><td>".Convert::convertdate($row2['Date'])."</td><td>".$row2['Content']."</td></tr>";
 										echo "</tbody>
@@ -207,16 +209,18 @@
 				}
 			} else if($PageID=="9"){
 				Function GetSubject($mid){
-					$sql = "SELECT Title FROM Messages WHERE ID='".mysql_real_escape_string($mid)."' LIMIT 1";
-					$res = mysql_query($sql) or die(mysql_error());
-					$row = mysql_fetch_assoc($res);
+					$link = DbConnection::getConnection();
+					$sql = "SELECT Title FROM Messages WHERE ID='".mysqli_real_escape_string($link, $mid)."' LIMIT 1";
+					$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+					$row = mysqli_fetch_assoc($res);
 					return $row['Title'];
 				}
 
 				Function GetTarget($uid){
+					$link = DbConnection::getConnection();
 					$sql = "SELECT Sender FROM Messages WHERE ID='".$uid."' LIMIT 1";
-					$res = mysql_query($sql) or die(mysql_error());
-					$row = mysql_fetch_assoc($res);
+					$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+					$row = mysqli_fetch_assoc($res);
 					return $row['Sender'];
 				}
 
@@ -249,9 +253,9 @@
 						// Query the topics table for all topics in the specified topic
 						$sql2 = "SELECT * FROM topics WHERE topic_creator='".$uid."' LIMIT $start_from, 5";
 						// Execute the SELECT query
-						$res2 = mysql_query($sql2) or die(mysql_error());
+						$res2 = mysqli_query($link, $sql2) or Mysql::HandleError(mysqli_error($link));
 						// Fetch all the post data from the database
-						while ($row2 = mysql_fetch_assoc($res2)) {
+						while ($row2 = mysqli_fetch_assoc($res2)) {
 							// Echo out the topic post data from the database
 							echo "<tr><td valign='top'>".User::getusername($uid)."</td><td>".Convert::convertdate($row2['topic_date'])."</td><td>".$row2['topic_title']."</td></tr>";
 						}
@@ -259,8 +263,8 @@
 							</table>
 							</div>";
 				$sql = "SELECT * FROM posts WHERE post_creator='".$uid."'"; 
-				$rs_result = mysql_query($sql2) or die(mysql_error());
-				$row = mysql_num_rows($rs_result);
+				$rs_result = mysqli_query($link, $sql2) or Mysql::HandleError(mysqli_error($link));
+				$row = mysqli_num_rows($rs_result);
 				$total_pages = ceil($row / 5); 
 				echo "Page ";
 				for ($i=1; $i<=$total_pages; $i++) { 
@@ -281,9 +285,9 @@
 						// Query the posts table for all posts in the specified topic
 						$sql2 = "SELECT * FROM posts WHERE post_creator='".$uid."' LIMIT $start_from, 5";
 						// Execute the SELECT query
-						$res2 = mysql_query($sql2) or die(mysql_error());
+						$res2 = mysqli_query($link, $sql2) or Mysql::HandleError(mysqli_error($link));
 						// Fetch all the post data from the database
-						while ($row2 = mysql_fetch_assoc($res2)) {
+						while ($row2 = mysqli_fetch_assoc($res2)) {
 							// Echo out the topic post data from the database
 							echo "<tr><td valign='top'>".User::getusername($uid)."</td><td>".Convert::convertdate($row2['post_date'])."</td><td>".$row2['post_content']."</td></tr>";
 						}
@@ -291,8 +295,8 @@
 							</table>
 							</div>";
 				$sql = "SELECT * FROM posts WHERE post_creator='".$uid."'"; 
-				$rs_result = mysql_query($sql2) or die(mysql_error());
-				$row = mysql_num_rows($rs_result);
+				$rs_result = mysqli_query($link, $sql2) or Mysql::HandleError(mysqli_error($link));
+				$row = mysqli_num_rows($rs_result);
 				$total_pages = ceil($row / 5); 
 				echo "Page ";
 				for ($i=1; $i<=$total_pages; $i++) { 
@@ -301,15 +305,16 @@
 			} else {
 				// Function that will convert a user id into their email
 				function getuid($uid) {
+					$link = DbConnection::getConnection();
 					$sql = "SELECT id FROM users WHERE username='".$uid."' LIMIT 1";
-					$res = mysql_query($sql) or die(mysql_error());
-					$row = mysql_fetch_assoc($res);
+					$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+					$row = mysqli_fetch_assoc($res);
 					return $row['id'];
 				}
 
 				$sql = "SELECT * FROM posts WHERE post_creator='".$uid."'";
-				$res = mysql_query($sql) or die(mysql_error());
-				$post_count = mysql_num_rows($res);
+				$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+				$post_count = mysqli_num_rows($res);
 
 				if (isset($_GET['username'])){
 					$username = $_GET['username'];
@@ -341,11 +346,11 @@
 					echo "
 					<center>
 					<table>
-					<tr><td><center>".getusername($uid2)."</center><br /></td></tr>
-					<tr><td><center><img src='".getavatar($uid2)."' style='width:200px;height:200px;' /></center><br /></td></tr>
-					<tr><td><center>Email: ".getemail($uid2)."</center><br /></td></tr>
-					<tr><td><center>Rank: ".getrank($uid2)."</center><br /></td></tr>
-					<tr><td><center>Posts: ".count_posts($uid2)."</center><br /></td></tr>
+					<tr><td><center>".User::getusername($uid2)."</center><br /></td></tr>
+					<tr><td><center><img src='".User::getavatar($uid2)."' style='width:200px;height:200px;' /></center><br /></td></tr>
+					<tr><td><center>Email: ".User::getemail($uid2)."</center><br /></td></tr>
+					<tr><td><center>Rank: ".User::getrank($uid2)."</center><br /></td></tr>
+					<tr><td><center>Posts: ".User::count_posts($uid2)."</center><br /></td></tr>
 					</table>
 					</center>
 					<br />";

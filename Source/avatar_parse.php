@@ -28,8 +28,8 @@ $random=rand(1, 2500);
 $uid = $_SESSION['uid'];
 
 $sql = "UPDATE users SET avatar='".$avatar."' WHERE id='".$uid."'";
-$res = mysql_query($sql) or die(mysql_error());
-$row = mysql_fetch_assoc($res);
+$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+$row = mysqli_fetch_assoc($res);
 header("location: index.php");
 mysql_close($con);
 ?>

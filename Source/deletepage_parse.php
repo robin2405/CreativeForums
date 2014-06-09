@@ -1,6 +1,7 @@
 <?php
 session_start();
-include_once("connect.php");
+include_once("Classes/Connect.class.php");
+$link = DbConnection::getConnection();
 
 if ((!isset($_SESSION['uid']))) {
 
@@ -20,8 +21,8 @@ if ($permission!=$admin) {
 
 $pid=$_GET['page'];
 
-  $sql = "DELETE FROM pages WHERE id='".mysql_real_escape_string($pid)."'";
-  $res = mysql_query($sql) or die(mysql_error());
+  $sql = "DELETE FROM pages WHERE id='".mysqli_real_escape_string($link, $pid)."'";
+  $res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
   mysqli_close($con);
   header("Location: admin.php?page=3");
 ?>

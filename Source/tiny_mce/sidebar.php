@@ -6,9 +6,9 @@
 						// Query the posts table for all posts in the specified topic
 						$sql2 = "SELECT * FROM users WHERE TIMESTAMPDIFF(MINUTE,`last_Active`,NOW()) <= 15";
 						// Execute the SELECT query
-						$res2 = mysql_query($sql2) or die(mysql_error());
+						$res2 = mysqli_query($link, $sql2) or Mysql::HandleError(mysqli_error($link));
 						// Fetch all the post data from the database
-						while ($row2 = mysql_fetch_assoc($res2)) {
+						while ($row2 = mysqli_fetch_assoc($res2)) {
 							// Echo out the topic post data from the database
 							echo "<img src='http://achievecraft.com/tools/avatar/64/".$row2['username'].".png' Title='".$row2['username']."' style='width:30px;height:30px;'> ";
 						}

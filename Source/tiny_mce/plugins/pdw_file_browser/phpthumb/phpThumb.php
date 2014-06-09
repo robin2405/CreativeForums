@@ -181,7 +181,7 @@ if ($phpThumb->config_nohotlink_enabled && $phpThumb->config_nohotlink_erase_ima
 if ($phpThumb->config_mysql_query) {
 	if ($cid = @mysql_connect($phpThumb->config_mysql_hostname, $phpThumb->config_mysql_username, $phpThumb->config_mysql_password)) {
 		if (@mysql_select_db($phpThumb->config_mysql_database, $cid)) {
-			if ($result = @mysql_query($phpThumb->config_mysql_query, $cid)) {
+			if ($result = @mysqli_query($link, $phpThumb->config_mysql_query, $cid)) {
 				if ($row = @mysql_fetch_array($result)) {
 
 					mysql_free_result($result);

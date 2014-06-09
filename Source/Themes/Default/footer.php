@@ -5,9 +5,9 @@
 						// Query the posts table for all posts in the specified topic
 						$sql2 = "SELECT * FROM users WHERE TIMESTAMPDIFF(SECOND,`last_Active`,NOW()) <= 5 LIMIT 50";
 						// Execute the SELECT query
-						$res2 = mysql_query($sql2) or die(mysql_error());
+						$res2 = mysqli_query($link, $sql2) or Mysql::HandleError(mysqli_error($link));
 						// Fetch all the post data from the database
-						while ($row2 = mysql_fetch_assoc($res2)) {
+						while ($row2 = mysqli_fetch_assoc($res2)) {
 							// Echo out the topic post data from the database
 							echo'<a href="user.php?username='.$row2["username"].'"><img src="'.User::getavatar($row2["id"]).'" Title="'.$row2["username"].'" style="width:30px;height:30px;"></a>';
 						}
@@ -26,11 +26,7 @@
 		</div>
 		<br />
 		
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- javascripts placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="../../bootstrap/js/bootstrap.min.js"></script>
-	<script src="../../bootstrap/js/docs.min.js"></script>
 </body>
 </html>

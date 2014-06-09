@@ -16,12 +16,12 @@ echo"<div class='table-responsive'>
 // Select all the data from the categories table in your database and order them by the category_title
 $sql = "SELECT * FROM categories ORDER BY category_title ASC";
 // Execute the SELECT query
-$res = mysql_query($sql) or Mysql::HandleError(mysql_error());
+$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
 $categories = "";
 // Check to make sure that the categories table has data in it
-if (mysql_num_rows($res) > 0) {
+if (mysqli_num_rows($res) > 0) {
 	// Retrieve data from the categories table
-	while ($row = mysql_fetch_assoc($res)) {
+	while ($row = mysqli_fetch_assoc($res)) {
 		// Assign local variables from each field in the categories table
 		$id = $row['id'];
 		$title = $row['category_title'];

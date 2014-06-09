@@ -3,15 +3,15 @@
 	// Function that will retrieve the selected theme
 	function getTheme() {
 		$sql = "SELECT SettingValue FROM settings WHERE SettingName='Theme' LIMIT 1";
-		$res = mysql_query($sql) or die(mysql_error());
-		$row = mysql_fetch_assoc($res);
+		$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+		$row = mysqli_fetch_assoc($res);
 		return $row['SettingValue'];
 	}
 	// Function that will retrieve the selected theme
 	function getRoot() {
 		$sql = "SELECT SettingValue FROM settings WHERE SettingName='Root' LIMIT 1";
-		$res = mysql_query($sql) or die(mysql_error());
-		$row = mysql_fetch_assoc($res);
+		$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+		$row = mysqli_fetch_assoc($res);
 		return $row['SettingValue'];
 	}
 	

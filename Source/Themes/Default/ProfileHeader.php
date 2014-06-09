@@ -1,6 +1,4 @@
 <?php
-require "connect.php";
-
 	session_start(); // Start your sessions to allow your page to interact with session variables
 	
 	if (isset($_SESSION['uid'])){
@@ -35,6 +33,8 @@ require "connect.php";
 	    include_once('Classes/' . $class . '.class.php');
 	}
 
+	LoadClass("Connect");
+	$link = DbConnection::getConnection();
 	LoadClass("Mysql");
 	LoadClass("Convert");
 	LoadClass("Site");

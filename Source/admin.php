@@ -1,11 +1,14 @@
 <?php
-	require "connect.php";
+
+	include_once('Classes/Connect.class.php');
+	$link = DbConnection::getConnection();
 
 	// Function that will retrieve the selected theme
 	function getTheme() {
+		$link = DbConnection::getConnection();
 		$sql = "SELECT SettingValue FROM settings WHERE SettingName='Theme' LIMIT 1";
-		$res = mysql_query($sql) or die(mysql_error());
-		$row = mysql_fetch_assoc($res);
+		$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+		$row = mysqli_fetch_assoc($res);
 		return $row['SettingValue'];
 	}
 	
@@ -27,9 +30,9 @@
 				// Select the topics that are associated with this category id and order by the topic_reply_date
 				$sql2 = "SELECT * FROM categories ORDER BY id";
 				// Execute the SELECT query
-				$res2 = mysql_query($sql2) or die(mysql_error());
+				$res2 = mysqli_query($link, $sql2) or Mysql::HandleError(mysqli_error($link));
 				// Check to see if there are topics in the category
-				if (mysql_num_rows($res2) >= 0) {
+				if (mysqli_num_rows($res2) >= 0) {
 					// Appending table data to the $topics variable for output on the page
 					$table .= "<thead>
 							<tr>
@@ -41,7 +44,7 @@
 						  </thead>
 						  <tbody>";
 					// Fetching topic data from the database
-					while ($row = mysql_fetch_assoc($res2)) {
+					while ($row = mysqli_fetch_assoc($res2)) {
 						// Assign local variables from the database data
 						$cid = $row['id'];
 						$title = $row['category_title'];
@@ -66,9 +69,9 @@
 					// Select the topics that are associated with this category id and order by the topic_reply_date
 						$sql2 = "SELECT * FROM gallery ORDER BY id";
 						// Execute the SELECT query
-						$res2 = mysql_query($sql2) or die(mysql_error());
+						$res2 = mysqli_query($link, $sql2) or Mysql::HandleError(mysqli_error($link));
 						// Check to see if there are topics in the category
-						if (mysql_num_rows($res2) >= 0) {
+						if (mysqli_num_rows($res2) >= 0) {
 							// Appending table data to the $topics variable for output on the page
 							$table .= "<thead>
 									<tr>
@@ -79,7 +82,7 @@
 								  </thead>
 								  <tbody>";
 							// Fetching topic data from the database
-							while ($row = mysql_fetch_assoc($res2)) {
+							while ($row = mysqli_fetch_assoc($res2)) {
 								// Assign local variables from the database data
 								$cid = $row['id'];
 								$url = $row['url'];
@@ -104,9 +107,9 @@
 				// Select the topics that are associated with this category id and order by the topic_reply_date
 					$sql2 = "SELECT * FROM pages ORDER BY id";
 					// Execute the SELECT query
-					$res2 = mysql_query($sql2) or die(mysql_error());
+					$res2 = mysqli_query($link, $sql2) or Mysql::HandleError(mysqli_error($link));
 					// Check to see if there are topics in the category
-					if (mysql_num_rows($res2) >= 0) {
+					if (mysqli_num_rows($res2) >= 0) {
 						// Appending table data to the $topics variable for output on the page
 						$table .= "<thead>
 								<tr>
@@ -116,7 +119,7 @@
 							  </thead>
 							  <tbody>";
 						// Fetching topic data from the database
-						while ($row = mysql_fetch_assoc($res2)) {
+						while ($row = mysqli_fetch_assoc($res2)) {
 							// Assign local variables from the database data
 							$pid = $row['id'];
 							$title = $row['title'];

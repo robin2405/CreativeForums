@@ -14,7 +14,8 @@ if (isset($_POST['topic_submit'])) {
 		exit();
 	} else {
 		// Connect to the database
-		include_once("connect.php");
+		include_once("Classes/Connect.class.php");
+$link = DbConnection::getConnection();
 		// Assign the POST variables to local variables
 		$cid = $_POST['cid'];
 		$title = $_POST['topic_title'];
@@ -22,19 +23,19 @@ if (isset($_POST['topic_submit'])) {
 		$creator = $_SESSION['uid'];
 		
 		// Insert query to enter the topic information into the database
-		$sql = "INSERT INTO topics (category_id, topic_title, topic_creator, topic_date, topic_reply_date) VALUES ('".mysql_real_escape_string($cid)."', '".mysql_real_escape_string($title)."', '".mysql_real_escape_string($creator)."', now(), now())";
+		$sql = "INSERT INTO topics (category_id, topic_title, topic_creator, topic_date, topic_reply_date) VALUES ('".mysqli_real_escape_string($link, $cid)."', '".mysqli_real_escape_string($link, $title)."', '".mysqli_real_escape_string($link, $creator)."', now(), now())";
 		// Execute the INSERT query
-		$res = mysql_query($sql) or die(mysql_error());
+		$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
 		// Gather the generated mysql_insert_id from the INSERT query
 		$new_topic_id = mysql_insert_id();
 		// Insert query to enter the post information into the database
-		$sql2 = "INSERT INTO posts (category_id, topic_id, post_creator, post_content, post_date) VALUES ('".mysql_real_escape_string($cid)."', '".mysql_real_escape_string($new_topic_id)."', '".mysql_real_escape_string($creator)."', '".mysql_real_escape_string($content)."', now())";
+		$sql2 = "INSERT INTO posts (category_id, topic_id, post_creator, post_content, post_date) VALUES ('".mysqli_real_escape_string($link, $cid)."', '".mysqli_real_escape_string($link, $new_topic_id)."', '".mysqli_real_escape_string($link, $creator)."', '".mysqli_real_escape_string($link, $content)."', now())";
 		// Execute the INSERT query
-		$res2 = mysql_query($sql2) or die(mysql_error());
+		$res2 = mysqli_query($link, $sql2) or Mysql::HandleError(mysqli_error($link));
 		// Update the forum category associated with this new topic
-		$sql3 = "UPDATE categories SET last_post_date=now(), last_user_posted='".$creator."' WHERE id='".mysql_real_escape_string($cid)."' LIMIT 1";
+		$sql3 = "UPDATE categories SET last_post_date=now(), last_user_posted='".$creator."' WHERE id='".mysqli_real_escape_string($link, $cid)."' LIMIT 1";
 		// Execute the category UPDATE query
-		$res3 = mysql_query($sql3) or die(mysql_error());
+		$res3 = mysqli_query($link, $sql3) or Mysql::HandleError(mysqli_error($link));
 		// Check to make sure all the required queries have been executed
 		if (($res) && ($res2) && ($res3)) {
 			header("Location: view_topic.php?cid=".$cid."&tid=".$new_topic_id);

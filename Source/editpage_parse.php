@@ -1,7 +1,8 @@
 <?php
 session_start(); // Start your sessions to allow your page to interact with session variables
 
-include_once("connect.php");
+include_once("Classes/Connect.class.php");
+$link = DbConnection::getConnection();
 
 
 
@@ -34,13 +35,13 @@ if (isset($_POST['page_submit'])) {
                 $title=$_POST['pagename'];
 		$pid = $_POST['pid'];
 
-		$sql = "UPDATE pages SET content='".mysql_real_escape_string($content)."' WHERE id='".mysql_real_escape_string($pid)."'";
-		$res = mysql_query($sql) or die(mysql_error());
-		$row = mysql_fetch_assoc($res);
+		$sql = "UPDATE pages SET content='".mysqli_real_escape_string($link, $content)."' WHERE id='".mysqli_real_escape_string($link, $pid)."'";
+		$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+		$row = mysqli_fetch_assoc($res);
                 mysql_close($con);
-                $sql = "UPDATE pages SET title='".mysql_real_escape_string($title)."' WHERE id='".mysql_real_escape_string($pid)."'";
-		$res = mysql_query($sql) or die(mysql_error());
-		$row = mysql_fetch_assoc($res);
+                $sql = "UPDATE pages SET title='".mysqli_real_escape_string($link, $title)."' WHERE id='".mysqli_real_escape_string($link, $pid)."'";
+		$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+		$row = mysqli_fetch_assoc($res);
 		header("location: editpage2.php");
 		mysql_close($con);
 	}

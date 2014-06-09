@@ -1,6 +1,7 @@
 <?php
 session_start(); // Start your sessions to allow your page to interact with session variables
-include_once("connect.php");
+include_once("Classes/Connect.class.php");
+$link = DbConnection::getConnection();
 
 // Check to see if they person accessing this page is logged in and that there is a category id in the url
 if ((!isset($_SESSION['uid'])) || ($_GET['cid'] == "")) {
@@ -34,9 +35,9 @@ tinymce.init({
 <?php
 // Function that will convert a user id into their username
 function getposttext($pid) {
-	$sql = "SELECT post_content FROM posts WHERE id='".mysql_real_escape_string($pid)."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
+	$sql = "SELECT post_content FROM posts WHERE id='".mysqli_real_escape_string($link, $pid)."' LIMIT 1";
+	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+	$row = mysqli_fetch_assoc($res);
 	return $row['post_content'];
 }
 		echo "<p>Go back to <a href='view_topic.php?cid=".$cid."&tid=".$tid."'>Topic</a>.</p>";

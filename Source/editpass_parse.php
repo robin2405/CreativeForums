@@ -5,15 +5,15 @@ require 'password.php';
 
 function getcurpass($uid) {
 	$sql = "SELECT password FROM users WHERE id='".$uid."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
+	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+	$row = mysqli_fetch_assoc($res);
 	return $row['password'];
 }
 
 function getsalt($uid) {
 	$sql = "SELECT salt FROM users WHERE id='".$uid."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
+	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+	$row = mysqli_fetch_assoc($res);
 	return $row['salt'];
 }
 
@@ -44,7 +44,7 @@ if(password_verify($oldpass, $hash)) {
 		$newpass = $salt.$newpass;
 		$password = password_hash($newpass, PASSWORD_BCRYPT);
 		$sql = "UPDATE users SET password='".$password."', salt='".$salt."' WHERE id='".$uid."'";
-		$res = mysql_query($sql) or die(mysql_error());
+		$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
 		mysql_close($con);
 		header("Location: index.php");
 		} else {

@@ -1,6 +1,4 @@
 <?php
-  require "connect.php";
-
   session_start(); // Start your sessions to allow your page to interact with session variables
   
   if (isset($_SESSION['uid'])){

@@ -55,31 +55,31 @@
               </ul>
             </li>
           </ul>
-		  <ul class="nav navbar-nav navbar-right">
-			<?php if (!isset($_SESSION['uid'])) {
-				echo'<li><a href="Login.php">Login</a></li>
-				<li><a href="register.php">Register</a></li>
-				';
-			} else {
-				echo'
-				<li class="dropdown">
-					<a href="user.php" class="dropdown-toggle" data-toggle="dropdown">'.User::getusername($uid).'<b class="caret"></b></a>
-					<ul class="dropdown-menu">';
-					if ($permission==$admin) {
-						echo'
-						<li class="dropdown-header">Admin</li>
-						<li><a href="admin.php">Admin panel</a></li>';
-					}
-						echo'
-						<li class="dropdown-header">User</li>
-						<li><a href="user.php">Profile</a></li>
-						<li><a href="user.php?page=6">Messages</a></li>
-						<li><a href="user.php?page=10">Your Content</a></li>						
-					</ul>
-				</li>
-				<li class="active"><a href="logout_parse.php">Logout</a></li>
-				';
-			} ?>
+      <ul class="nav navbar-nav navbar-right">
+      <?php if (!isset($_SESSION['uid'])) {
+        echo'<li><a href="Login.php">Login</a></li>
+        <li><a href="register.php">Register</a></li>
+        ';
+      } else {
+        echo'
+        <li class="dropdown">
+          <a href="user.php" class="dropdown-toggle" data-toggle="dropdown">'.User::getusername($uid).'<b class="caret"></b></a>
+          <ul class="dropdown-menu">';
+          if ($permission==$admin) {
+            echo'
+            <li class="dropdown-header">Admin</li>
+            <li><a href="admin.php">Admin panel</a></li>';
+          }
+            echo'
+            <li class="dropdown-header">User</li>
+            <li><a href="user.php">Profile</a></li>
+            <li><a href="user.php?page=6">Messages</a></li>
+            <li><a href="user.php?page=10">Your Content</a></li>            
+          </ul>
+        </li>
+        <li class="active"><a href="logout_parse.php">Logout</a></li>
+        ';
+      } ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

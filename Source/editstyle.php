@@ -2,13 +2,14 @@
 
 session_start(); // Start your sessions to allow your page to interact with session variables
 
-include_once("connect.php");
+include_once("Classes/Connect.class.php");
+$link = DbConnection::getConnection();
 
 // Function that will convert a user id into their username
 function getstyle($sid) {
 	$sql = "SELECT content FROM style WHERE id='".$sid."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
+	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+	$row = mysqli_fetch_assoc($res);
 	return $row['content'];
 }
 

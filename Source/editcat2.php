@@ -2,7 +2,8 @@
 
 session_start(); // Start your sessions to allow your page to interact with session variables
 
-include_once("connect.php");
+include_once("Classes/Connect.class.php");
+$link = DbConnection::getConnection();
 
 // Assign local variables
 $pid = $_GET['cid'];
@@ -32,16 +33,16 @@ include_once("header.php");
 
 
 function getdesc($pid) {
-	$sql = "SELECT category_description FROM categories WHERE id='".mysql_real_escape_string($pid)."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
+	$sql = "SELECT category_description FROM categories WHERE id='".mysqli_real_escape_string($link, $pid)."' LIMIT 1";
+	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+	$row = mysqli_fetch_assoc($res);
 	return $row['category_description'];
 }
 
 function gettitle($pid) {
-	$sql = "SELECT category_title FROM categories WHERE id='".mysql_real_escape_string($pid)."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
+	$sql = "SELECT category_title FROM categories WHERE id='".mysqli_real_escape_string($link, $pid)."' LIMIT 1";
+	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+	$row = mysqli_fetch_assoc($res);
 	return $row['category_title'];
 }
 

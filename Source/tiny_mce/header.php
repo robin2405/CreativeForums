@@ -1,40 +1,41 @@
 <?php
 session_start(); // Start your sessions to allow your page to interact with session variables
-include_once("connect.php");
+include_once("Classes/Connect.class.php");
+$link = DbConnection::getConnection();
 
 $uid = $_SESSION[uid];
 
 $sql = "UPDATE users SET Last_Active=now() WHERE id='".$uid."'";
-$res = mysql_query($sql) or die(mysql_error());
+$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
 
 // Function that will convert a user id into their Permission
 function getpermission($uid) {
 	$sql = "SELECT Permission FROM users WHERE id='".$uid."'";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
+	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+	$row = mysqli_fetch_assoc($res);
 	return $row['Permission'];
 }
 
 function getusername($uid) {
 	$sql = "SELECT username FROM users WHERE id='".$uid."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
+	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+	$row = mysqli_fetch_assoc($res);
 	return $row['username'];
 }
 
 // Function that will convert a user id into their username
 function getstyle($sid) {
 	$sql = "SELECT content FROM style WHERE id='".$sid."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
+	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+	$row = mysqli_fetch_assoc($res);
 	return $row['content'];
 }
 
 // Function that will convert a user id into their username
 function count_onlineusers() {
  $sql = "SELECT * FROM users WHERE TIMESTAMPDIFF(MINUTE,`last_Active`,NOW()) <= 15";
- $res = mysql_query($sql) or die(mysql_error());
- $post_count = mysql_num_rows($res);
+ $res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+ $post_count = mysqli_num_rows($res);
  return $post_count;
 }
 
