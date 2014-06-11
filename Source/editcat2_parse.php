@@ -1,7 +1,8 @@
 <?php
 session_start(); // Start your sessions to allow your page to interact with session variables
 
-include_once("connect.php");
+include_once("Classes/Connect.class.php");
+$link = DbConnection::getConnection();
 
 
 
@@ -34,13 +35,13 @@ if (isset($_POST['cat_submit'])) {
         $title=$_POST['catname'];
 		$pid = $_GET['cid'];
 
-		$sql = "UPDATE categories SET category_description='".mysql_real_escape_string($desc)."' WHERE id='".mysql_real_escape_string($pid)."'";
-		$res = mysql_query($sql) or die(mysql_error());
-		$row = mysql_fetch_assoc($res);
+		$sql = "UPDATE categories SET category_description='".mysqli_real_escape_string($link, $desc)."' WHERE id='".mysqli_real_escape_string($link, $pid)."'";
+		$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+		$row = mysqli_fetch_assoc($res);
 		mysql_close($con);
-			$sql = "UPDATE categories SET category_title='".mysql_real_escape_string($title)."' WHERE id='".mysql_real_escape_string($pid)."'";
-			$res = mysql_query($sql) or die(mysql_error());
-			$row = mysql_fetch_assoc($res);
+			$sql = "UPDATE categories SET category_title='".mysqli_real_escape_string($link, $title)."' WHERE id='".mysqli_real_escape_string($link, $pid)."'";
+			$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+			$row = mysqli_fetch_assoc($res);
 			header("location: editcat.php");
 			mysql_close($con);
 	}

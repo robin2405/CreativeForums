@@ -38,12 +38,12 @@ if ($securimage->check($_POST['captcha_code']) == false) {
 
 	$mysql_date = date( 'Y-m-d' );
       
-	$sql = "SELECT * FROM users WHERE username='".mysql_real_escape_string($username)."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	if (mysql_num_rows($res) == 1) {
+	$sql = "SELECT * FROM users WHERE username='".mysqli_real_escape_string($link, $username)."' LIMIT 1";
+	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+	if (mysqli_num_rows($res) == 1) {
 		echo "Username already in use.";
 	} else {
-		mysql_query("INSERT INTO users(username, password, salt, email, rank)VALUES('".mysql_real_escape_string($username)."', '$hash', '$salt', '".mysql_real_escape_string($email)."', 'member')");
+		mysqli_query($link, "INSERT INTO users(username, password, salt, email, rank)VALUES('".mysqli_real_escape_string($link, $username)."', '$hash', '$salt', '".mysqli_real_escape_string($link, $email)."', 'member')");
 		header("location: index.php");
 		mysql_close($con);
 	}

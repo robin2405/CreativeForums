@@ -2,7 +2,8 @@
 
 session_start(); // Start your sessions to allow your page to interact with session variables
 
-include_once("connect.php");
+include_once("Classes/Connect.class.php");
+$link = DbConnection::getConnection();
 
 // Assign local variables
 $tid = $_GET['tid'];
@@ -24,9 +25,10 @@ include_once("header.php");
 
 
 function gettitle($tid) {
-	$sql = "SELECT topic_title FROM topics WHERE id='".mysql_real_escape_string($tid)."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
+	$link = DbConnection::getConnection();
+	$sql = "SELECT topic_title FROM topics WHERE id='".mysqli_real_escape_string($link, $tid)."' LIMIT 1";
+	$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+	$row = mysqli_fetch_assoc($res);
 	return $row['topic_title'];
 }
 

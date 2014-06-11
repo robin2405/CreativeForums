@@ -1,103 +1,52 @@
 <?php
-$sql = "UPDATE users SET Last_Active=now() WHERE id='".$uid."'";
-$res = mysql_query($sql) or die(mysql_error());
+  session_start(); // Start your sessions to allow your page to interact with session variables
+  
+  if (isset($_SESSION['uid'])){
+    $uid = $_SESSION['uid'];
+  } else {
+    $uid = "";
+  }
 
-// PreDefined Variables
-$logged="";
-$table="";
-$pages="";
-$topics="";
+  // PreDefined Variables
+  $logged="";
+  $table="";
+  $pages="";
+  $topics="";
 
-function convertdate($date) {
-    $date = strtotime($date);
-    return date("M j, Y g:ia", $date);
-}
+  // Setting the players online status
+  echo'<script language="javascript">
+        window.setInterval(
+          function cancelClicked() {
+              // function below will run clear.php?h=michael
+              $.ajax({
+                  url: "Functions/UpdateUserOnline.php" ,
+                  success : function() { 
+                      // Do something when the code is executed
+                  }
+              });
+          }
+        , 5000);
+    </script>';
 
-function count_posts($uid) {
-$sql = "SELECT * FROM posts WHERE post_creator='".$uid."'";
-$res = mysql_query($sql) or die(mysql_error());
-$post_count = mysql_num_rows($res);
-return $post_count;
-}
+  // Loading Classes
+  function LoadClass($class){
+      include_once('Classes/' . $class . '.class.php');
+  }
 
-// Function that will convert a user id into their email addres
-function getemail($uid) {
-	$sql = "SELECT email FROM users WHERE id='".$uid."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
-	return $row['email'];
-}
+  LoadClass("Mysql");
+  LoadClass("Convert");
+  LoadClass("Site");
+  LoadClass("User");
 
+  $permission = User::getpermission($uid);
+  $admin = 'admin';
+  
+  $getTheme = Site::getTheme();
+  $Root = Site::getRoot();
 
-// Function that will convert a user id into their rank
-function getrank($uid) {
-	$sql = "SELECT rank FROM users WHERE id='".$uid."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
-	return $row['rank'];
-}
-
-// Function that will convert a user id into their Permission
-function getpermission($uid) {
-	$sql = "SELECT Permission FROM users WHERE id='".$uid."'";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
-	return $row['Permission'];
-}
-
-function getusername($uid) {
-	$sql = "SELECT username FROM users WHERE id='".$uid."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
-	return $row['username'];
-}
-
-// Function that will convert a user id into their username
-function getstyle($sid) {
-	$sql = "SELECT content FROM style WHERE id='".$sid."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
-	return $row['content'];
-}
-
-// Function that will convert a user id into their username
-function count_onlineusers() {
- $sql = "SELECT * FROM users WHERE TIMESTAMPDIFF(SECOND,`last_Active`,NOW()) <= 1";
- $res = mysql_query($sql) or die(mysql_error());
- $post_count = mysql_num_rows($res);
- return $post_count;
-}
-
-// Function that will convert a user id into their username
-function count_registered() {
- $sql = "SELECT * FROM users";
- $res = mysql_query($sql) or die(mysql_error());
- $post_count = mysql_num_rows($res);
- return $post_count;
-}
-
-// Function that will convert a user id into their username
-function count_messages($uid) {
- $sql = "SELECT * FROM Messages WHERE Target='".$uid."' AND viewed='0'";
- $res = mysql_query($sql) or die(mysql_error());
- $mess_count = mysql_num_rows($res);
- return $mess_count;
-}
-
-// Function that will convert a user id into their avatar
-function getavatar($uid) {
-	$sql = "SELECT avatar FROM users WHERE id='".$uid."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
-	return $row['avatar'];
-}
-
-$permission = getpermission($uid);
-$admin = 'admin';
-
-if ($permission!=$admin) {
+  if ($permission!=$admin) {
     header("Location: index.php");
-}
+  }
 ?>
 
 <!doctype html>

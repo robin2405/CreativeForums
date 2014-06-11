@@ -1,20 +1,20 @@
 <?php
-session_start(); // Start your sessions to allow your page to interact with session variables
-if ($_GET['page'] == 1){
-header("Location: home.php");
-}
-include_once("header.php");
-include_once("connect.php");
+	session_start(); // Start your sessions to allow your page to interact with session variables
+	if ($_GET['page'] == 1){
+		header("Location: home.php");
+	}
+	include_once("header.php");
 
-// Function that will convert a user id into their username
-function getpage($pid) {
-	$sql = "SELECT content FROM pages WHERE id='".mysql_real_escape_string($pid)."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
-	return $row['content'];
-}
+	// Function that will convert a user id into their username
+	function getpage($pid) {
+		$link = DbConnection::getConnection();
+		$sql = "SELECT content FROM pages WHERE id='".mysqli_real_escape_string($link, $pid)."' LIMIT 1";
+		$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+		$row = mysqli_fetch_assoc($res);
+		return $row['content'];
+	}
 
-echo getpage($_GET['page']);
+	echo getpage($_GET['page']);
 
-include_once("footer.php");
+	include_once("footer.php");
 ?>	

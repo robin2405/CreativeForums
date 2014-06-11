@@ -1,7 +1,13 @@
 <?php
 session_start(); // Start your sessions to allow your page to interact with session variables
 
-include('connect.php');
+// Loading Classes
+function LoadClass($class){
+    include_once('Classes/' . $class . '.class.php');
+}
+
+LoadClass("Connect");
+$link = DbConnection::getConnection();
 
 $allowedExts = array("gif", "jpeg", "jpg", "png");
 $temp = explode(".", $_FILES["file"] . $random . $_FILES["name"]);
@@ -28,8 +34,8 @@ $random=rand(1, 2500);
 $uid = $_SESSION['uid'];
 
 $sql = "UPDATE users SET avatar='".$avatar."' WHERE id='".$uid."'";
-$res = mysql_query($sql) or die(mysql_error());
-$row = mysql_fetch_assoc($res);
+$res = mysqli_query($link, $sql) or Mysql::HandleError(mysqli_error($link));
+$row = mysqli_fetch_assoc($res);
 header("location: index.php");
 mysql_close($con);
 ?>

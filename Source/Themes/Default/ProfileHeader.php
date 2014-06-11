@@ -1,54 +1,50 @@
 <?php
-session_start(); // Start your sessions to allow your page to interact with session variables
+	session_start(); // Start your sessions to allow your page to interact with session variables
+	
+	if (isset($_SESSION['uid'])){
+		$uid = $_SESSION['uid'];
+	} else {
+		$uid = "";
+	}
 
-if (isset($_SESSION['uid'])){
-	$uid = $_SESSION['uid'];
-} else {
-	$uid = "";
-}
+	// PreDefined Variables
+	$logged="";
+	$table="";
+	$pages="";
+	$topics="";
 
-function getusername($uid) {
-	$sql = "SELECT username FROM users WHERE id='".$uid."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
-	return $row['username'];
-}
+	// Setting the players online status
+	echo'<script language="javascript">
+        window.setInterval(
+        	function cancelClicked() {
+	            // function below will run clear.php?h=michael
+	            $.ajax({
+	                url: "Functions/UpdateUserOnline.php" ,
+	                success : function() { 
+	                    // Do something when the code is executed
+	                }
+	            });
+        	}
+        , 5000);
+    </script>';
 
-// Function that will convert a user id into their avatar
-function getavatar($uid) {
-	$sql = "SELECT avatar FROM users WHERE id='".$uid."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
-	return $row['avatar'];
-}
+	// Loading Classes
+	function LoadClass($class){
+	    include_once('Classes/' . $class . '.class.php');
+	}
 
-// Function that will convert a user id into their email addres
-function getemail($uid) {
-	$sql = "SELECT email FROM users WHERE id='".$uid."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
-	return $row['email'];
-}
+	LoadClass("Connect");
+	$link = DbConnection::getConnection();
+	LoadClass("Mysql");
+	LoadClass("Convert");
+	LoadClass("Site");
+	LoadClass("User");
 
-// Function that will convert a user id into their rank
-function getrank($uid) {
-	$sql = "SELECT rank FROM users WHERE id='".$uid."' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
-	return $row['rank'];
-}
-
-// Function that will retrieve the selected theme
-function getRoot() {
-	$sql = "SELECT SettingValue FROM settings WHERE SettingName='Root' LIMIT 1";
-	$res = mysql_query($sql) or die(mysql_error());
-	$row = mysql_fetch_assoc($res);
-	return $row['SettingValue'];
-}
-
-	$getTheme = getTheme();
-	$Root = getRoot();
-
+	$permission = User::getpermission($uid);
+	$admin = 'admin';
+	
+	$getTheme = Site::getTheme();
+	$Root = Site::getRoot();
 ?>
 <!doctype html>
 <html lang="en">
